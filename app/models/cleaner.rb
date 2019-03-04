@@ -1,0 +1,2 @@
+class Cleaner < ApplicationRecord
+end

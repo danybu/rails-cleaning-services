@@ -1,0 +1,46 @@
+
+.card-cleaner-big {
+  overflow: hidden;
+  background: white;
+  box-shadow: 0 0 15px rgba(0,0,0,0.2);
+  margin-bottom: 28px;
+  padding-bottom: 2px;
+}
+
+.card-cleaner-big > img {
+  height: 240px;
+  width: 100%;
+  object-fit: cover;
+}
+
+.card-cleaner-big h2 {
+  font-size: 16px;
+  font-weight: bold;
+  margin: 0;
+  text-align: left;
+  text-shadow: 0;
+}
+
+.card-cleaner-big h3 {
+  font-size: 18px;
+  font-weight: bold;
+  margin: 0;
+  text-align: left;
+  margin-bottom: 4px;
+}
+
+.card-cleaner-big p {
+  font-size: 12px;
+  opacity: .7;
+  margin: 0;
+}
+
+.card-cleaner-big .card-cleaner-big-infos {
+  padding: 4px 16px 8px 16px;
+  display: flex;
+  justify-content: space-around;
+  align-items: flex-end;
+  position: relative;
+  overflow: hidden;
+  height:70px;
+}

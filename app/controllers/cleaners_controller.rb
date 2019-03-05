@@ -22,18 +22,10 @@ class CleanersController < ApplicationController
   end
 
   def show
+    @reviews = []
     @cleaner = Cleaner.find(params[:id])
-    @reviews = ["Lorem ipsum dolor sit amet, consectetur adipisicing elit. Animi
-     unde magnam voluptates, cumque neque, eveniet quibusdam
-     illo dolorum nobis nihil aperiam, eaque sapiente dolorem obcaecati? Ex eos
-     qui aut, sunt.","Lorem ipsum dolor sit amet, consectetur adipisicing elit. Animi
-     unde magnam voluptates, cumque neque, eveniet quibusdam
-     illo dolorum nobis nihil aperiam, eaque sapiente dolorem obcaecati? Ex eos
-     qui aut, sunt." ,"Lorem ipsum dolor sit amet, consectetur adipisicing elit. Animi
-     unde magnam voluptates, cumque neque, eveniet quibusdam
-     illo dolorum nobis nihil aperiam, eaque sapiente dolorem obcaecati? Ex eos
-     qui aut, sunt." ]
-
-     @booking = Reservation.new
-   end
- end
+    reservations = Reservation.where(cleaner_id: params[:id], status:'2') #get all finish rsv of current cleaner
+    reservations.each { |rsv| @reviews << Review.find(rsv.id).content  }
+    @booking = Reservation.new
+  end
+end

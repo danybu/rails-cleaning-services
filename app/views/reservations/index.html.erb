@@ -15,13 +15,15 @@
           </div>
 
           <div class="button-notification-status">
-            <p> Status = <%= reservation.status%> </p>
+            <p> Status : <%= reservation.status%> </p>
 
           </div>
 
           <div class="notification-actions">
             <a href="#">Edit <i class="fas fa-pencil-alt"></i></a>
-            <a href="#">Delete <i class="far fa-trash-alt"></i></a>
+            <%= link_to reservation_path(reservation.id), method: :delete, data: { confirm: "Delete Prestation on #{reservation.reserved_on}? of #{Cleaner.find(reservation.cleaner_id).name}" } do %>
+              <i class="far fa-trash-alt"></i> </a>
+             <% end %>
           </div>
         </div>
     <% end %>

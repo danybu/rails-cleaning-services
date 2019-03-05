@@ -21,11 +21,15 @@
   <!-- book me action button -->
 
   <div class="row center-block">
+    <% if user_signed_in? %>
     <%= simple_form_for @booking do |f| %>
     <%= f.hidden_field :cleaner_id, value: @cleaner.id %>
     <%= f.hidden_field :user_id, value: current_user.id %>
     <%= f.datetime_select :reserved_on, :ampm => true, :minute_step => 60 %>
     <%= f.button :submit,"Book Me 🧹 ", class: "btn btn-danger" %>
+    <% end %>
+    <% else %>
+    <h4>plz sign innn</h4>
     <% end %>
   </div>
 

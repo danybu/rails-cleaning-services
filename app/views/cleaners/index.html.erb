@@ -1,2 +1,33 @@
-<h1>Cleaners#index</h1>
-<p>Find me in app/views/cleaners/index.html.erb</p>
+
+
+<div class="banner">
+ <h1>Get your life together</h1>
+ <h2>While we keep the filth out of your house.</h2>
+ <p>Family newsletters with fancy pictures and cleaning houses, you probably don't see the common ground.  But we at <%= link_to "Tribu", "https://www.mytribunews.com/en/" %>, we shine in both.  You'll see.  Just try out one of our cleaning (wo)men. They'll scrub away your sorrows!</p>
+</div>
+
+<div class="container-own">
+
+  <h2>Our heroes of hygiene</h2>
+  <div class="container">
+    <div class="row">
+      <% @cleaners.each do |cleaner| %>
+      <div class="col-xs-6 col-md-4">
+        <div class="card-cleaner-big">
+          <%= image_tag "poetsvrouw.jpg", alt: "cleaning"%>
+          <div class="card-cleaner-big-infos">
+            <div>
+              <h2><%= cleaner.name %> </h2>
+              <p><%= cleaner.description %></p>
+            </div>
+            <h3 class="card-cleaner-big-pricing">
+              <%= cleaner.price %>€
+            </h3>
+          </div>
+        </div>
+      </div>
+      <% end %>
+    </div>
+  </div>
+
+</div>

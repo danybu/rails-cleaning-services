@@ -18,3 +18,26 @@ $headers-font: "Raleway", "Helvetica", "sans-serif";
 //@import url("https://fonts.googleapis.com/css?family=Roboto|Varela+Round")
 //$body-font: "Roboto", "sans-serif";
 //$headers-font: "Varela Round", "sans-serif";
+
+h1, h2 {
+  margin: 0;
+  margin-top: 2em;
+  text-shadow: 1px 1px 3px rgba(0,0,0,0.2);
+}
+
+ h1 {
+  font-size: 50px;
+  font-weight: bold;
+}
+
+h2 {
+  font-size: 32px;
+  font-weight: 300;
+}
+
+p {
+  font-size: 20px;
+  max-width: 70%;
+  min-width: 300px;
+}
+

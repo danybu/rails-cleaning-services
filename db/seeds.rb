@@ -6,6 +6,7 @@
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
 
+
 while Cleaner.count < 40
   Cleaner.create! name:Faker::Name.female_first_name, description:Faker::Quote.famous_last_words, price: rand(7..20), age: rand(18..70), average_rating: rand(0..5)
 end
@@ -19,6 +20,8 @@ while Reservation.count < 9
   my_res = Reservation.new
   my_res.user = User.find(guard)
   my_res.cleaner = Cleaner.find(guard)
+  my_res.status = rand(1..3).to_s
+  my_res.reserved_on = Time.now
   guard += 1
   my_res.save
 end

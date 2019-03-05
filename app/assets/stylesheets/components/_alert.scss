@@ -13,3 +13,8 @@
 .alert-warning {
   background: $red;
 }
+
+.notice, .alert {
+  margin-top:0;
+  margin-bottom:0;
+}

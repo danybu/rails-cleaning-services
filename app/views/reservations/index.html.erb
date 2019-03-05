@@ -1,2 +1,31 @@
-<h1>Reservations#index</h1>
-<p>Find me in app/views/reservations/index.html.erb</p>
+<div class="container">
+<h1>Your Reservations</h1>
+  <ul id="Reservations">
+    <% @reservations.each do |reservation| %>
+      <ul>
+        <div class="notification">
+          <%= image_tag "poetsvrouw.jpg", alt: "cleaner.photo", width: 200%>
+          <div class="notification-content">
+             <p><small> <%= reservation.reserved_on %> <small></p>
+             <h4><%= Cleaner.find(reservation.cleaner_id).name%> </h4>
+          </div>
+          <div class="button-notification-action">
+            <a href="#" class="button-tribu"> Post a Review </a>
+
+          </div>
+
+          <div class="button-notification-status">
+            <p> Status : <%= reservation.status%> </p>
+
+          </div>
+
+          <div class="notification-actions">
+            <a href="#">Edit <i class="fas fa-pencil-alt"></i></a>
+            <%= link_to reservation_path(reservation.id), method: :delete, data: { confirm: "Delete Prestation on #{reservation.reserved_on}? of #{Cleaner.find(reservation.cleaner_id).name}" } do %>
+              <i class="far fa-trash-alt"></i> </a>
+             <% end %>
+          </div>
+        </div>
+    <% end %>
+  </ul>
+</div>

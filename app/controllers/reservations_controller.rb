@@ -32,11 +32,12 @@ class ReservationsController < ApplicationController
   def delete
     @reservation = Reservation.find(params[:id])
     @reservation.destroy
+    redirect_to reservations_path
   end
 
   private
 
   def reservation_params
-    params.require(:Reservation).permit(:reserved_on, :status)
+    params.require(:reservation).permit(:reserved_on, :status)
   end
 end

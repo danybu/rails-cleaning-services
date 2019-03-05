@@ -15,7 +15,8 @@
   <% if !notice.nil?  %>
   <p class="notice"><%= notice %></p>
     <% elsif !alert.nil?  %>
-  <p class="alert"><%= alert %></p>
+  <p class="alert">
+   <%= alert %></p>
   <% end  %>
   <%= yield %>
 

@@ -8,9 +8,9 @@ class ReviewsController < ApplicationController
     @review = Review.new(review_params)
     @review.reservation = Reservation.find(params[:reservation_id])
     if @review.save!
-      redirect_to cleaner_path(@review.reservation.cleaner)
+      redirect_to reservations_path
     else
-      redirect_to cleaner_path(@review.reservation.cleaner)
+      redirect_to reservations_path
     end
   end
 

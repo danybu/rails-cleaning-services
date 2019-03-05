@@ -10,8 +10,7 @@
              <h4><%= Cleaner.find(reservation.cleaner_id).name%> </h4>
           </div>
           <div class="button-notification-action">
-            <a href="#" class="button-tribu"> Post a Review </a>
-
+            <%= link_to "Write a Review", new_reservation_review_path(reservation), class: 'button-tribu' %>
           </div>
 
           <div class="button-notification-status">
@@ -26,6 +25,6 @@
              <% end %>
           </div>
         </div>
-    <% end %>
-  </ul>
+     </ul>
+   <% end %>
 </div>

@@ -1,2 +1,35 @@
-<h1>Reviews#new</h1>
-<p>Find me in app/views/reviews/new.html.erb</p>
+<div class="container">
+
+  <div class="container-review">
+    <div class="review-id">
+      <h2> Reservation on <%=@reservation.reserved_on %> </h2>
+      <p> Your Cleaner <%= Cleaner.find(@reservation.cleaner_id).name%></p>
+    </div>
+
+    <div class="review-photo">
+      <%= image_tag "poetsvrouw.jpg", alt: "cleaner.photo", width: 200%>
+    </div>
+
+    <div class="review-rating">
+     <%= simple_form_for [@reservation, @review] do |f| %>
+     <% if @review.errors.any? %>
+        <div class="errors-container">
+         <ul>
+           <% @review.errors.full_messages.each do |message| %>
+           <li><%= message %></li>
+      <% end %>
+        </ul>
+        </div>
+    <% end %>
+
+ <div class="form-group">
+   <%= simple_form_for [@reservation, @review], url: reservations_path do |f| %>
+     <%= f.input :content %>
+     <%= f.input :rating, :collection => %w[0 1 2 3 4 5]%>
+     <%= f.submit "Add a review", class: "btn btn-primary" %>
+   <% end %>
+ </div>
+<% end %>
+  </div>
+</div>
+

@@ -7,7 +7,7 @@
 #   Character.create(name: 'Luke', movie: movies.first)
 
 
-while Cleaner.count < 40
+while Cleaner.count < 20
   Cleaner.create! name:Faker::Name.female_first_name, description:Faker::Quote.famous_last_words, price: rand(7..20), age: rand(18..70), average_rating: rand(0..5)
 end
 
@@ -16,20 +16,24 @@ while User.count < 20
 end
 
 guard = 1
-while Reservation.count < 9
+while Reservation.count < 20
   my_res = Reservation.new
   my_res.user = User.find(guard)
-  my_res.cleaner = Cleaner.find(guard)
+  my_res.cleaner = Cleaner.find(rand(1..5))
   my_res.status = rand(1..3).to_s
   my_res.reserved_on = Time.now
   guard += 1
   my_res.save
 end
 
-while Review.count < 15
+i=1
+while Review.count < 20
   rev = Review.new
   rev.rating = rand(1..5)
   rev.content = Faker::Movies::HarryPotter.quote
-  rev.reservation = Reservation.find(rand(1..9))
+  rev.reservation = Reservation.find(i)
+  i = i+1
   rev.save
 end
+
+# Review.create(rating:2, content:"man so bad", )

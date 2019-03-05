@@ -21,9 +21,12 @@
               <h2><%= cleaner.name %> </h2>
               <p><%= cleaner.description %></p>
             </div>
-            <h3 class="card-cleaner-big-pricing">
-              <%= cleaner.price %>€
-            </h3>
+            <div class="card-cleaner-right">
+              <span class="card-cleaner-average-rating"> <%=cleaner.rating_average%> </span>
+              <h3 class="card-cleaner-big-pricing">
+                <%= cleaner.price %>€
+              </h3>
+            </div>
           </div>
         </div>
         <% end %>

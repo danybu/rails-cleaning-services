@@ -25,7 +25,7 @@
     <%= f.hidden_field :cleaner_id, value: @cleaner.id %>
     <%= f.hidden_field :user_id, value: current_user.id %>
     <%= f.datetime_select :reserved_on, :ampm => true, :minute_step => 60 %>
-    <%= f.button :submit,"Book Me 🧹 ", class: "btn btn-danger" %>
+    <%= f.button :submit,"Book Me", class: "btn btn-danger" %>
     <% end %>
   </div>
 
@@ -33,7 +33,7 @@
 
   <div class="row center-block" style="background-color:blue;">
     <p class="text-center">
-     ⭐️ <%=  @cleaner.name %>'s reviews ⭐️ :
+      <%=  @cleaner.name %>'s reviews  :
    </p>
  </div>
  <div class="row center-block" style="background-color:green;">
@@ -48,3 +48,4 @@
   <% end %>
 </div>
 </div>
+

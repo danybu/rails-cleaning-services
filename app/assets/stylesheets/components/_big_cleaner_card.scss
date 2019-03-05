@@ -1,3 +1,6 @@
+  a {
+    color: black;
+  }
 
 .card-cleaner-big {
   overflow: hidden;
@@ -6,6 +9,7 @@
   margin-bottom: 28px;
   padding-bottom: 2px;
 }
+
 
 .card-cleaner-big > img {
   height: 240px;
@@ -33,14 +37,30 @@
   font-size: 12px;
   opacity: .7;
   margin: 0;
+  color: black;
 }
 
 .card-cleaner-big .card-cleaner-big-infos {
   padding: 4px 16px 8px 16px;
   display: flex;
-  justify-content: space-around;
+  justify-content: space-between;
   align-items: flex-end;
   position: relative;
+  // overflow: auto;
+  height:60px;
+}
+
+.card-cleaner-big-pricing h3 {
+  flex: 1 0 30px;
+  text-align: right;
+  color: black;
+}
+
+.card-cleaner-info-middle {
+  height:50px;
+  width:80%;
   overflow: hidden;
-  height:70px;
+  display: flex;
+  flex-direction:column;
+  justify-content: flex-end;
 }

@@ -8,15 +8,16 @@
 
 <div class="container-own">
 
-  <h2>Our heroes of hygiene</h2>
+  <h2>Book our heroes of hygiene</h2>
   <div class="container">
     <div class="row">
       <% @cleaners.each do |cleaner| %>
       <div class="col-xs-6 col-md-4">
+        <%= link_to cleaner_path(cleaner) do %>
         <div class="card-cleaner-big">
           <%= image_tag "poetsvrouw.jpg", alt: "cleaning"%>
           <div class="card-cleaner-big-infos">
-            <div>
+            <div class="card-cleaner-info-middle">
               <h2><%= cleaner.name %> </h2>
               <p><%= cleaner.description %></p>
             </div>
@@ -25,6 +26,7 @@
             </h3>
           </div>
         </div>
+        <% end %>
       </div>
       <% end %>
     </div>

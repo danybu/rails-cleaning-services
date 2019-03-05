@@ -1,0 +1,38 @@
+.banner {
+  background-size: cover;
+  background-position: top;
+  padding: 140px 0 50px 0;
+  background-image: linear-gradient(rgba(0,0,0,0),rgba(0,0,0,0.4)), asset-url("bannerpic.jpg");
+  display: flex;
+  flex-direction: column;
+  justify-content: end;
+  align-items: center;
+}
+
+.banner h1, .banner h2 {
+  margin: 0;
+  margin-top: 2em;
+  color: white;
+  text-shadow: 1px 1px 3px rgba(0,0,0,0.2);
+
+}
+
+.banner h1 {
+  font-size: 50px;
+  font-weight: bold;
+}
+
+.banner h2 {
+  font-size: 32px;
+  font-weight: 300;
+  margin-bottom: 1.5em;
+}
+
+.banner p {
+  font-size: 20px;
+  color: white;
+  opacity: .8;
+  max-width: 70%;
+  min-width: 300px;
+}
+

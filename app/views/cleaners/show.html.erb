@@ -1,2 +1,48 @@
-<h1>Cleaners#show</h1>
-<p>Find me in app/views/cleaners/show.html.erb</p>
+<div class="container">
+  <!-- under is description and picture -->
+  <div class="row">
+    <div class="col-sm-8" style="background-color:yellow;">
+      <p>
+        <%= @cleaner.description %>
+      </p>
+      ERASE ME MASSSTER PLZZZ <br>
+      Lorem ipsum dolor sit amet, consectetur adipisicing elit. Reprehenderit sit velit ab error explicabo aliquam atque est, nobis enim praesentium assumenda voluptas labore repudiandae, expedita harum voluptatibus quod accusamus hic?
+    </div>
+    <div class="col-sm-4" style="background-color:red;">
+      <%= image_tag "poetsvrouw.jpg", alt: "cleaning", width: 200%>
+      <%= @cleaner.name %>,
+      <%= @cleaner.age %> <br>
+      <%= @cleaner.price %> €   <br>
+      rating : <%= @cleaner.average_rating %> / 5
+
+    </div>
+  </div>
+
+  <!-- book me action button -->
+
+  <div class="row center-block">
+    <%= simple_form_for @booking do |f| %>
+    <%= f.hidden_field :cleaner_id, value: @cleaner.id %>
+    <%= f.hidden_field :user_id, value: current_user.id %>
+    <%= f.datetime_select :reserved_on, :ampm => true, :minute_step => 60 %>
+    <%= f.submit%>
+    <% end %>
+  </div>
+
+  <!-- review section -->
+
+  <div class="row center-block" style="background-color:blue;">
+    <p class="text-center">
+     ⭐️ <%=  @cleaner.name %>'s reviews ⭐️ :
+   </p>
+ </div>
+ <div class="row center-block" style="background-color:green;">
+  <% @reviews.each do |review| %>
+  <div class="col-xs-12">
+    <p>
+      <%= review  %>
+    </p>
+  </div>
+  <% end %>
+</div>
+</div>

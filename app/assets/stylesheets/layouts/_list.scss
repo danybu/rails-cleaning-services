@@ -1,0 +1,89 @@
+.notification {
+  display: flex;
+  align-items: center;
+  margin-bottom: 8px;
+  background: white;
+  padding: 8px 16px;
+  border: 1px solid rgb(235,235,235);
+  position: relative;
+}
+
+.notification .notification-content {
+  flex-grow: 1;
+  padding: 0 24px;
+}
+
+.notification p {
+  margin: 0;
+  line-height: 1.4;
+}
+
+.notification small {
+  color: #999999;
+  font-weight: bold;
+}
+.notification .notification-actions {
+  opacity: 0;
+  display: flex;
+  transition: ease .3s;
+  position: absolute;
+  bottom : 10px;
+  right : 10px;
+}
+
+.button-notification-action {
+  position: absolute;
+  top : 10px;
+  right : 10px;
+}
+
+.button-tribu {
+  display: inline-block;
+  margin-bottom: 0;
+  font-weight: normal;
+  text-align: center;
+  white-space: nowrap;
+  vertical-align: middle;
+  touch-action: manipulation;
+  cursor: pointer;
+  background-image: none;
+  border: 1px solid transparent;
+  padding: 6px 12px;
+  font-size: 18px;
+  line-height: 1.42857;
+  border-radius: 5px;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+  color: #fff;
+  background-color: #00B9A0;
+  border-color: #28a745;
+}
+
+.button-tribu:hover {
+     text-decoration:none;
+     opacity: 0.7;
+     font: bold;
+     color: white;
+  }
+
+ .button-notification-status {
+  position: absolute;
+  bottom : 15px;
+  left : 239px;
+ }
+
+.notification:hover .notification-actions {
+  opacity: 1;
+}
+
+.notification .notification-actions a {
+  color: #999999;
+  margin-left: 16px;
+  font-size: 14px;
+}
+
+.notification .notification-actions a:hover {
+  color: #555555;
+}

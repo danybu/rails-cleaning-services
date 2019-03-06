@@ -13,15 +13,15 @@
   <div class="col-sm-6 text-center cleaner-description">
     " <%= @cleaner.description %>"
   </div>
+  <% var = @cleaner.average_rating  %>
   <div class="col-sm-2 text-center cleaner-rating">
     <div class="stars-outer">
       <div class="stars-inner"></div>
     </div>
     <br>
-    rating : <%= @cleaner.average_rating %> / 5
+    <span id='rating'><%=var%></span> / 5
   </div>
 </div>
-
 
 
 
@@ -64,8 +64,3 @@
   </div>
 </div>
 </div>
-
-</div>
-
-
-

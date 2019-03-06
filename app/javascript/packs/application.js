@@ -1,7 +1,7 @@
 import "bootstrap";
 import { hoverCard } from './hover-card';
-import { test } from './test'
-test();
+import { star_rating } from './star_rating'
+star_rating();
 hoverCard();
 
 // import { hoverCard } from '/hover-card'

@@ -1,3 +1,4 @@
+
 .container{
   background-color:white;
 }
@@ -25,11 +26,13 @@
 .stars-outer {
   display: inline-block;
   position: relative;
-  font-family: Font Awesome;
+  font-family: "Font Awesome 5 Free";
+  font-weight: 900;
 }
 
 .stars-outer::before {
-  content: "\f006 \f006 \f006 \f006 \f006";
+  content: "\f005 \f005 \f005 \f005 \f005";
+  color:#CDCDCD;
 }
 
 .stars-inner {
@@ -42,6 +45,6 @@
 }
 
 .stars-inner::before {
-  content: "\f005 \f005 \f005 \f005 \f005";
+  content:"\f005 \f005 \f005 \f005 \f005";
   color: #f8ce0b;
 }

@@ -6,6 +6,13 @@ class CleanersController < ApplicationController
     @cleaners.each do |cleaner|
       average_calcul cleaner
     end
+    cleaners_map = Cleaner.where.not(latitude: nil, longitude: nil)
+    @markers = cleaners_map.map do |cleaner|
+      {
+        lng: cleaner.longitude,
+        lat: cleaner.latitude
+      }
+    end
   end
 
   def show

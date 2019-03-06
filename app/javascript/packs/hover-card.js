@@ -4,3 +4,4 @@ document.querySelectorAll(".card-cleaner-big").addEventListener("mouseover", (ev
   const wholeCard = event.currentTarget;
   wholeCard.innerHTML = "AIAIAI";
 });
+

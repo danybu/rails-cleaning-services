@@ -13,19 +13,19 @@
       rating : <%= @cleaner.average_rating %> / 5
     </div>
   </div>
-</div>
 
-<!-- book me action button -->
 
-<div class="row center-block" style="background-color:;">
+  <!-- book me action button -->
+
+  <div class="row center-block" style="background-color:;">
     <div class='text-center'>
-    <% if user_signed_in? %>
-    <%= simple_form_for @booking do |f|  %>
-    <%= f.hidden_field :cleaner_id, value: @cleaner.id %>
-    <%= f.hidden_field :user_id, value: current_user.id %>
-    <%= f.datetime_select :reserved_on, ampm: true,minute_step: 60 %>
-    <%= f.button :submit,"Book Me ", class: "btn btn-danger" %>
-    <% end %>
+      <% if user_signed_in? %>
+      <%= simple_form_for @booking do |f|  %>
+      <%= f.hidden_field :cleaner_id, value: @cleaner.id %>
+      <%= f.hidden_field :user_id, value: current_user.id %>
+      <%= f.datetime_select :reserved_on, ampm: true,minute_step: 60 %>
+      <%= f.button :submit,"Book Me ", class: "btn btn-danger" %>
+      <% end %>
     </div>
     <% else %>
 
@@ -35,16 +35,16 @@
       </div>
     </div>
     <% end %>
-</div>
+  </div>
 
-<!-- review section -->
+  <!-- review section -->
 
-<div class="row center-block" style="background-color:blue;">
-  <div class="text-center">
-   <%= @cleaner.name %>'s reviews :
+  <div class="row center-block" style="background-color:blue;">
+    <div class="text-center">
+     <%= @cleaner.name %>'s reviews :
+   </div>
  </div>
-</div>
-<div class="row center-block" style="background-color:green;">
+ <div class="row center-block" style="background-color:green;">
   <div class="d-flex flex-column">
     <% @reviews.each do |review| %>
     <div class="d-flex justify-content-center">
@@ -55,5 +55,5 @@
 </div>
 </div>
 
-
+</div>
 

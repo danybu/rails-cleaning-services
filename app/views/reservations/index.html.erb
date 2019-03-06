@@ -6,7 +6,7 @@
         <div class="notification">
           <%= cl_image_tag "cleaning_pictures/"+Cleaner.find(reservation.cleaner_id).photo_url, height: 200, width: 200, crop: :fill, gravity: :face %>
           <div class="notification-content">
-             <p><small> <%= reservation.reserved_on %> <small></p>
+             <p><small> <%= reservation.reserved_on %> </small></p>
              <h4><%= Cleaner.find(reservation.cleaner_id).name%> </h4>
           </div>
           <% if Review.where(reservation_id:reservation.id).empty? %>
@@ -16,12 +16,13 @@
             </div>
           <% else %>
             <div class="button-notification-star">
-              <p> Rated : </p>
-              <i class="fa fa-star checked"></i>
-              <i class="fa fa-star checked"></i>
-              <i class="fa fa-star checked"></i>
-              <i class="fa fa-star checked"></i>
-              <i class="fa fa-star checked"></i>
+            <% test = Review.where(reservation_id:reservation.id).first.rating %>
+              <i> Rated : </i>
+              <i class="<%= test>0 ? 'fa fa-star checked' : 'fa fa-star' %>"></i>
+              <i class="<%= test>1 ? 'fa fa-star checked' : 'fa fa-star' %>"></i>
+              <i class="<%= test>2 ? 'fa fa-star checked' : 'fa fa-star' %>"></i>
+              <i class="<%= test>3 ? 'fa fa-star checked' : 'fa fa-star' %>"></i>
+              <i class="<%= test>4 ? 'fa fa-star checked' : 'fa fa-star' %>"></i>
 
             </div>
           <% end %>

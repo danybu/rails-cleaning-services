@@ -1,9 +1,55 @@
+
+.container{
+  background-color:white;
+}
+
 .cleaner-show {
-  background-color:white;
-  margin-top:5px ;
+  margin-top: 5px;
 }
 
-.cleaner-show-all {
-  background-color:white;
+
+.cleaner-info {
+  padding-top: 50px;
 }
 
+.cleaner-description{
+  padding-top: 50px;
+  font-style: italic;
+}
+
+.cleaner-rating{
+  padding-top: 50px;
+}
+
+.cleaner-reviews{
+  height: 400px;
+
+}
+
+// this is the star rating css
+
+.stars-outer {
+  display: inline-block;
+  position: relative;
+  font-family: "Font Awesome 5 Free";
+  font-weight: 900;
+}
+
+.stars-outer::before {
+  content: "\f005 \f005 \f005 \f005 \f005";
+  color:#CDCDCD;
+}
+
+.stars-inner {
+  position: absolute;
+  top: 0;
+  left: 0;
+  white-space: nowrap;
+  overflow: hidden;
+  width: 0;
+}
+
+.stars-inner::before {
+  content:"\f005 \f005 \f005 \f005 \f005";
+  color: #f8ce0b;
+}

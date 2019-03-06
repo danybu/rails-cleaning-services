@@ -4,15 +4,28 @@
     <% @reservations.each do |reservation| %>
       <ul>
         <div class="notification">
-          <%= image_tag "poetsvrouw.jpg", alt: "cleaner.photo", width: 200%>
+          <%= cl_image_tag "cleaning_pictures/"+Cleaner.find(reservation.cleaner_id).photo_url, height: 200, width: 200, crop: :fill, gravity: :face %>
           <div class="notification-content">
-             <p><small> <%= reservation.reserved_on %> <small></p>
+             <p><small> <%= reservation.reserved_on %> </small></p>
              <h4><%= Cleaner.find(reservation.cleaner_id).name%> </h4>
           </div>
-          <div class="button-notification-action">
-            <%= link_to "Write a Review", new_reservation_review_path(reservation), class: 'button-tribu' %>
-          </div>
+          <% if Review.where(reservation_id:reservation.id).empty? %>
 
+            <div class="button-notification-action">
+              <%= link_to "Write a Review", new_reservation_review_path(reservation), class: 'button-tribu' %>
+            </div>
+          <% else %>
+            <div class="button-notification-star">
+            <% test = Review.where(reservation_id:reservation.id).first.rating %>
+              <i> Rated : </i>
+              <i class="<%= test>0 ? 'fa fa-star checked' : 'fa fa-star' %>"></i>
+              <i class="<%= test>1 ? 'fa fa-star checked' : 'fa fa-star' %>"></i>
+              <i class="<%= test>2 ? 'fa fa-star checked' : 'fa fa-star' %>"></i>
+              <i class="<%= test>3 ? 'fa fa-star checked' : 'fa fa-star' %>"></i>
+              <i class="<%= test>4 ? 'fa fa-star checked' : 'fa fa-star' %>"></i>
+
+            </div>
+          <% end %>
           <div class="button-notification-status">
             <p> Status : <%= reservation.status%> </p>
 

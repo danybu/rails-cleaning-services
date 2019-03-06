@@ -19,7 +19,9 @@
       <div class="stars-inner"></div>
     </div>
     <br>
+    <small>
     <span id='rating'><%=var%></span> / 5
+    </small>
   </div>
 </div>
 
@@ -54,10 +56,10 @@
    <%= @cleaner.name %>'s reviews :
  </div>
 </div>
-<div class="row center-block  cleaner-show-all" style='background-color:orange;'>
+<div class="row center-block  cleaner-show-all " style='background-color:orange;'>
   <div class="d-flex flex-column">
     <% @reviews.each do |review| %>
-    <div class="d-flex justify-content-center" style='background-color:purple;'>
+    <div class="d-flex justify-content-center cleaner-reviews" style='background-color:purple;'>
       "<%= review  %>"
     </div>
     <% end %>

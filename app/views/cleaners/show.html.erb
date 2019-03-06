@@ -4,9 +4,6 @@
     <div class="col-sm-8" style="background-color:yellow;">
       <p>
         <%= @cleaner.description %>
-      </p>
-      ERASE ME MASSSTER PLZZZ <br>
-      Lorem ipsum dolor sit amet, consectetur adipisicing elit. Reprehenderit sit velit ab error explicabo aliquam atque est, nobis enim praesentium assumenda voluptas labore repudiandae, expedita harum voluptatibus quod accusamus hic?
     </div>
     <div class="col-sm-4" style="background-color:red;">
       <%= image_tag "poetsvrouw.jpg", alt: "cleaning", width: 200%>
@@ -21,6 +18,7 @@
   <!-- book me action button -->
 
   <div class="row center-block" style="background-color:orange;">
+    <p>
     <% if user_signed_in? %>
     <%= simple_form_for @booking do |f|  %>
     <%= f.hidden_field :cleaner_id, value: @cleaner.id %>
@@ -33,6 +31,7 @@
     <%= link_to 'sign in make a reservation', new_user_session_path %>
     </p>
     <% end %>
+    </p>
   </div>
 
   <!-- review section -->

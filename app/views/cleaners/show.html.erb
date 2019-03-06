@@ -13,10 +13,16 @@
   <div class="col-sm-6 text-center cleaner-description">
     " <%= @cleaner.description %>"
   </div>
-  <div class="col-sm-2 text-center cleaner-rating" style='background-color: green;'>
+  <div class="col-sm-2 text-center cleaner-rating">
+    <div class="stars-outer">
+      <div class="stars-inner"></div>
+    </div>
+    <br>
     rating : <%= @cleaner.average_rating %> / 5
   </div>
 </div>
+
+
 
 
 <!-- book me action button -->

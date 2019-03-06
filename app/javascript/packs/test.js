@@ -1,5 +1,6 @@
-const test = () => {
-  console.log('this is a test one checks');
+let testing = 4;
+const test = (testing = 4) => {
+  console.log(rating);
 };
 
 export { test };

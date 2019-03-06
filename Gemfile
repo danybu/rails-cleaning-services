@@ -2,6 +2,8 @@ source 'https://rubygems.org'
 ruby '2.5.3'
 
 gem 'faker' # adding faker to gemfile
+gem 'cloudinary', '~> 1.9.1'
+gem 'carrierwave', '~> 1.2'
 
 gem 'bootsnap', require: false
 gem 'jbuilder', '~> 2.0'
@@ -30,5 +32,5 @@ group :development, :test do
   gem 'spring'
   gem 'spring-watcher-listen', '~> 2.0.0'
   gem 'dotenv-rails'
-  gem 'cloudinary', '~> 1.9.1'
+
 end

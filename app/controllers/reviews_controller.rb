@@ -1,4 +1,7 @@
 class ReviewsController < ApplicationController
+
+   skip_before_action :verify_authenticity_token, only: [:create]
+
   def new
     @reservation = Reservation.find(params[:reservation_id])
     @review = Review.new

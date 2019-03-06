@@ -1,5 +1,5 @@
 import "bootstrap";
-import { hoverCard } from 'hover-card'
+import { hoverCard } from './hover-card';
 
 hoverCard();
 

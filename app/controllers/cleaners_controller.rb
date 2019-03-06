@@ -9,8 +9,6 @@ class CleanersController < ApplicationController
         if !reservation.reviews.empty?
           rating_sum += reservation.reviews[0].rating
           rating_count += 1
-          # raise
-          puts "#{cleaner.name} => #{reservation.reviews[0].rating}"
         end
       end
       if rating_sum == 0

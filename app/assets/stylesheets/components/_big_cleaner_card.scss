@@ -10,6 +10,9 @@
   padding-bottom: 2px;
 }
 
+.card-cleaner-big a:hover {
+  text-decoration: none;
+}
 
 .card-cleaner-big > img {
   height: 240px;
@@ -78,3 +81,10 @@
   flex-direction:column;
   justify-content: flex-end;
 }
+
+.on-hover a:hover {
+  text-decoration:none;
+}
+
+
+

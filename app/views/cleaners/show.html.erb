@@ -20,12 +20,18 @@
 
   <!-- book me action button -->
 
-  <div class="row center-block">
-    <%= simple_form_for @booking do |f| %>
+  <div class="row center-block" style="background-color:orange;">
+    <% if user_signed_in? %>
+    <%= simple_form_for @booking do |f|  %>
     <%= f.hidden_field :cleaner_id, value: @cleaner.id %>
     <%= f.hidden_field :user_id, value: current_user.id %>
-    <%= f.datetime_select :reserved_on, :ampm => true, :minute_step => 60 %>
-    <%= f.button :submit,"Book Me", class: "btn btn-danger" %>
+    <%= f.datetime_select :reserved_on, ampm: true,minute_step: 60 %>
+    <%= f.button :submit,"Book Me ", class: "btn btn-danger" %>
+    <% end %>
+    <% else %>
+    <p class='text-center'>
+    <%= link_to 'sign in make a reservation', new_user_session_path %>
+    </p>
     <% end %>
   </div>
 
@@ -33,11 +39,10 @@
 
   <div class="row center-block" style="background-color:blue;">
     <p class="text-center">
-      <%=  @cleaner.name %>'s reviews  :
+     <%=  @cleaner.name %>'s reviews :
    </p>
  </div>
  <div class="row center-block" style="background-color:green;">
-  <% @reviews.each do |review| %>
   <div class="col-xs-12">
     <% @reviews.each do |review| %>
     <p>
@@ -45,7 +50,6 @@
     </p>
     <% end %>
   </div>
-  <% end %>
 </div>
 </div>
 

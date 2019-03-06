@@ -2,6 +2,21 @@ class CleanersController < ApplicationController
   skip_before_action :authenticate_user!, only: [:show, :index]
   def index
     @cleaners = Cleaner.all
+    @cleaners.each do |cleaner|
+      rating_sum = 0.0
+      rating_count = 0
+      cleaner.reservations.each do |reservation|
+        if !reservation.reviews.empty?
+          rating_sum += reservation.reviews[0].rating
+          rating_count += 1
+        end
+      end
+      if rating_sum == 0
+        cleaner.rating_average = 0
+      else
+        cleaner.rating_average = rating_sum / rating_count
+      end
+    end
   end
 
   def show

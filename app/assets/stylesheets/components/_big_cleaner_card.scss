@@ -8,6 +8,7 @@
   box-shadow: 0 0 15px rgba(0,0,0,0.2);
   margin-bottom: 28px;
   padding-bottom: 2px;
+  perspective: 100px;
 }
 
 .card-cleaner-big a:hover {
@@ -18,6 +19,9 @@
   height: 240px;
   width: 100%;
   object-fit: cover;
+  object-position:top;
+  transition: all 1s;
+
 }
 
 .card-cleaner-big h2 {

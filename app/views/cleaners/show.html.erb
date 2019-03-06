@@ -6,7 +6,7 @@
         <%= @cleaner.description %>
     </div>
     <div class="col-sm-4" style="background-color:red;">
-      <%= image_tag "poetsvrouw.jpg", alt: "cleaning", width: 200%>
+      <%= cl_image_tag "cleaning_pictures/"+@cleaner.photo_url,width:150, height: 150, crop: :fill, gravity: :face %>
       <%= @cleaner.name %>,
       <%= @cleaner.age %> <br>
       <%= @cleaner.price %> €   <br>

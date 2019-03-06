@@ -7,9 +7,49 @@
 #   Character.create(name: 'Luke', movie: movies.first)
 
 
-while Cleaner.count < 20
-  Cleaner.create! name:Faker::Name.female_first_name, description:Faker::Quote.famous_last_words, price: rand(7..20), age: rand(18..70), average_rating: rand(0..5)
-end
+
+
+Cleaner.create!(name:"Karina",
+  description:"Takes the job too serious, we think. Top notch.",
+  price: rand(7..20), age: 30, photo_url:"poetsvrouw")
+Cleaner.create!(name:"Samira",
+  description:"She's got a sponge and not afraid to use it",
+  price: rand(7..20), age: 33, photo_url:"kitchen")
+Cleaner.create!(name:"Christina",
+  description:"Basically just sits there for an hour or two.",
+  price: rand(7..20), age: 23, photo_url:"belgique")
+Cleaner.create!(name:"Sad Sophie",
+  description:"Not her first carreer choice",
+  price: rand(7..20), age: 31, photo_url:"femme-de-menage-1")
+Cleaner.create!(name:"Suzy",
+  description:"Eats plants. Smiles a lot.",
+  price: rand(7..20), age: 45, photo_url:"full_woman")
+Cleaner.create!(name:"Hans the hero",
+  description:"he's got the power. And man boobs.",
+  price: rand(7..20), age: 29, photo_url:"funny_plumeau")
+Cleaner.create!(name:"Gerald",
+  description:"Particular. Old but bendy",
+  price: rand(7..20), age: 49, photo_url:"menage2")
+Cleaner.create!(name:"Olga",
+  description:"She's got a lot of tools!",
+  price: rand(7..20), age: 37, photo_url:"mopping")
+Cleaner.create!(name:"Lil' Bert",
+  description:"Barely walking, we put him to work.",
+  price: rand(7..20), age: 2, photo_url:"baby")
+Cleaner.create!(name:"Bollywood Boys",
+  description:"minimum wage is ok for them as long as they can dance",
+  price: rand(7..20), age: 29, photo_url:"pakistani")
+Cleaner.create!(name:"Tom and Tina",
+  description:"Professional, fast, but they argue",
+  price: rand(7..20), age: 30, photo_url:"Poetshulp-met-dienstencheques")
+Cleaner.create!(name:"Bertrand",
+  description:"Can vacuum everywhere. Even in the mountains.",
+  price: rand(7..20), age: 55, photo_url:"vacuum_man")
+Cleaner.create!(name:"Theodore",
+  description:"Scared of ladders",
+  price: rand(7..20), age: 33, photo_url:"window")
+puts "Done seeding cleaners"
+
 
 while User.count < 20
   User.create! email: Faker::Internet.email, encrypted_password: 'password1234', address: Faker::Address.full_address, password: 'thisisapass1234'

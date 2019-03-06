@@ -17,6 +17,13 @@ class CleanersController < ApplicationController
         cleaner.rating_average = rating_sum / rating_count
       end
     end
+    cleaners_map = Cleaner.where.not(latitude: nil, longitude: nil)
+    @markers = cleaners_map.map do |cleaner|
+      {
+        lng: cleaner.longitude,
+        lat: cleaner.latitude
+      }
+    end
   end
 
   def show

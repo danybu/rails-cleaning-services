@@ -4,15 +4,27 @@
     <% @reservations.each do |reservation| %>
       <ul>
         <div class="notification">
-          <%= image_tag "poetsvrouw.jpg", alt: "cleaner.photo", width: 200%>
+          <%= cl_image_tag "cleaning_pictures/"+Cleaner.find(reservation.cleaner_id).photo_url, height: 200, width: 200, crop: :fill, gravity: :face %>
           <div class="notification-content">
              <p><small> <%= reservation.reserved_on %> <small></p>
              <h4><%= Cleaner.find(reservation.cleaner_id).name%> </h4>
           </div>
-          <div class="button-notification-action">
-            <%= link_to "Write a Review", new_reservation_review_path(reservation), class: 'button-tribu' %>
-          </div>
+          <% if Review.where(reservation_id:reservation.id).empty? %>
 
+            <div class="button-notification-action">
+              <%= link_to "Write a Review", new_reservation_review_path(reservation), class: 'button-tribu' %>
+            </div>
+          <% else %>
+            <div class="button-notification-star">
+              <p> Rated : </p>
+              <i class="fa fa-star checked"></i>
+              <i class="fa fa-star checked"></i>
+              <i class="fa fa-star checked"></i>
+              <i class="fa fa-star checked"></i>
+              <i class="fa fa-star checked"></i>
+
+            </div>
+          <% end %>
           <div class="button-notification-status">
             <p> Status : <%= reservation.status%> </p>
 

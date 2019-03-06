@@ -20,7 +20,7 @@
     </div>
     <br>
     <small>
-    <span id='rating'><%=var%></span> / 5
+      <span id='rating'><%=var%></span> / 5
     </small>
   </div>
 </div>
@@ -66,3 +66,32 @@
   </div>
 </div>
 </div>
+
+<script type="text/javascript" src="https://cdn.jsdelivr.net/jquery/latest/jquery.min.js"></script>
+<script type="text/javascript" src="https://cdn.jsdelivr.net/momentjs/latest/moment.min.js"></script>
+<script type="text/javascript" src="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.min.js"></script>
+<link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.css" />
+<script>
+  $('input[name="birthday"]').daterangepicker();
+</script>
+<input type="text" name="birthday" value="10/24/1984" />
+
+<script>
+  const d = new Date;
+  $(function() {
+    $('input[name="birthday"]').daterangepicker({
+      singleDatePicker: true,
+      showDropdowns: true,
+      timePicker: true,
+      timePicker24Hour: true,
+      minYear: d.getFullYear(),
+      minDate: d.getDate(),
+      applyButtonClasses: 'btn btn-primary',
+      cancelButtonClasses: 'btn btn-danger',
+      maxYear: parseInt(moment().format('YYYY'),10)
+    }, function(start, end, label) {
+      var years = moment().diff(start, 'years');
+      alert("You have booked a reservation for " + moment() );
+    });
+  });
+</script>

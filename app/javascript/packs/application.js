@@ -1,6 +1,7 @@
 import "bootstrap";
 import { hoverCard } from './hover-card';
-
+import { test } from './test'
+test();
 hoverCard();
 
 // import { hoverCard } from '/hover-card'
@@ -36,4 +37,5 @@ const fitMapToMarkers = (map, markers) => {
 };
 
 initMapbox();
+
 

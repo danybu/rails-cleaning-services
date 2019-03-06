@@ -1,9 +1,21 @@
+.container{
+  background-color:white;
+}
+
 .cleaner-show {
-  background-color:white;
-  margin-top:5px ;
+  margin-top: 5px;
 }
 
-.cleaner-show-all {
-  background-color:white;
+
+.cleaner-info {
+  padding-top: 50px;
 }
 
+.cleaner-description{
+  padding-top: 50px;
+  font-style: italic;
+}
+
+.cleaner-rating{
+  padding-top: 50px;
+}

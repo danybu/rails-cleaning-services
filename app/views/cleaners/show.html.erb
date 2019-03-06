@@ -3,25 +3,25 @@
   <div class="row center-block cleaner-show">
 
    <div class="col-sm-2 text-center">
-    <%= cl_image_tag "cleaning_pictures/"+@cleaner.photo_url,width:150, height: 150, crop: :fill, gravity: :face %>
+    <%= cl_image_tag "cleaning_pictures/"+@cleaner.photo_url,width:150, height: 150, crop: :fill, gravity: :face, radius: 100 %>
   </div>
-  <div class="col-sm-2 text-center">
+  <div class="col-sm-2 text-center cleaner-info">
     <%= @cleaner.name %>,
     <%= @cleaner.age %> <br>
     <%= @cleaner.price %> €   <br>
   </div>
-  <div class="col-sm-2 text-center">
-    rating : <%= @cleaner.average_rating %> / 5
+  <div class="col-sm-6 text-center cleaner-description">
+    " <%= @cleaner.description %>"
   </div>
-  <div class="col-sm-6 text-center" id="description">
-    <%= @cleaner.description %>
+  <div class="col-sm-2 text-center cleaner-rating" style='background-color: green;'>
+    rating : <%= @cleaner.average_rating %> / 5
   </div>
 </div>
 
 
 <!-- book me action button -->
 
-<div class="row center-block cleaner-show-all">
+<div class="row center-block cleaner-show-all" style='background-color:brown;'>
   <div class='text-center'>
     <% if user_signed_in? %>
     <%= simple_form_for @booking do |f|  %>
@@ -43,15 +43,15 @@
 
 <!-- review section -->
 
-<div class="row center-block cleaner-show-all" >
+<div class="row center-block cleaner-show-all" style='background-color:beige;'>
   <div class="text-center">
    <%= @cleaner.name %>'s reviews :
  </div>
 </div>
-<div class="row center-block  cleaner-show-all" >
+<div class="row center-block  cleaner-show-all" style='background-color:orange;'>
   <div class="d-flex flex-column">
     <% @reviews.each do |review| %>
-    <div class="d-flex justify-content-center">
+    <div class="d-flex justify-content-center" style='background-color:purple;'>
       "<%= review  %>"
     </div>
     <% end %>

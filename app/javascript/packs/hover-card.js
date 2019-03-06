@@ -35,6 +35,3 @@ const hoverCard = () => {
 
 export { hoverCard };
 
-
-
-// <img height="300" width="400" src="http://res.cloudinary.com/df0udw5lo/image/upload/c_fill,g_face,h_300,w_400/v1/cleaning_pictures/full_woman">

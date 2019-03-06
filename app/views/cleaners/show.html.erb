@@ -1,55 +1,59 @@
 <div class="container">
   <!-- under is description and picture -->
-  <div class="row">
-    <div class="col-sm-8" style="background-color:yellow;">
-      <p>
-        <%= @cleaner.description %>
-      </p>
-      ERASE ME MASSSTER PLZZZ <br>
-      Lorem ipsum dolor sit amet, consectetur adipisicing elit. Reprehenderit sit velit ab error explicabo aliquam atque est, nobis enim praesentium assumenda voluptas labore repudiandae, expedita harum voluptatibus quod accusamus hic?
+  <div class="row center-block">
+    <div class="col-sm-8" id="description">
+      <%= @cleaner.description %>
     </div>
-    <div class="col-sm-4" style="background-color:red;">
-      <%= image_tag "poetsvrouw.jpg", alt: "cleaning", width: 200%>
+    <div class="col-sm-4" style="background-color:;">
+     <div class="text-center">
+      <%= cl_image_tag "cleaning_pictures/"+@cleaner.photo_url,width:150, height: 150, crop: :fill, gravity: :face %> <br>
       <%= @cleaner.name %>,
       <%= @cleaner.age %> <br>
       <%= @cleaner.price %> €   <br>
       rating : <%= @cleaner.average_rating %> / 5
-
     </div>
   </div>
 
+
   <!-- book me action button -->
 
-  <div class="row center-block" style="background-color:orange;">
-    <% if user_signed_in? %>
-    <%= simple_form_for @booking do |f|  %>
-    <%= f.hidden_field :cleaner_id, value: @cleaner.id %>
-    <%= f.hidden_field :user_id, value: current_user.id %>
-    <%= f.datetime_select :reserved_on, ampm: true,minute_step: 60 %>
-    <%= f.button :submit,"Book Me ", class: "btn btn-danger" %>
-    <% end %>
+  <div class="row center-block" style="background-color:;">
+    <div class='text-center'>
+      <% if user_signed_in? %>
+      <%= simple_form_for @booking do |f|  %>
+      <%= f.hidden_field :cleaner_id, value: @cleaner.id %>
+      <%= f.hidden_field :user_id, value: current_user.id %>
+      <%= f.datetime_select :reserved_on, ampm: true,minute_step: 60 %>
+      <%= f.button :submit,"Book Me ", class: "btn btn-danger" %>
+      <% end %>
+    </div>
     <% else %>
-    <p class='text-center'>
-    <%= link_to 'sign in make a reservation', new_user_session_path %>
-    </p>
+
+    <div class='text-center'>
+      <div class="btn btn-primary">
+        <%= link_to 'sign in make a reservation', new_user_session_path %>
+      </div>
+    </div>
     <% end %>
   </div>
 
   <!-- review section -->
 
   <div class="row center-block" style="background-color:blue;">
-    <p class="text-center">
-     <%=  @cleaner.name %>'s reviews :
-   </p>
+    <div class="text-center">
+     <%= @cleaner.name %>'s reviews :
+   </div>
  </div>
  <div class="row center-block" style="background-color:green;">
-  <div class="col-xs-12">
+  <div class="d-flex flex-column">
     <% @reviews.each do |review| %>
-    <p>
-      <%= review  %>
-    </p>
+    <div class="d-flex justify-content-center">
+      "<%= review  %>"
+    </div>
     <% end %>
   </div>
 </div>
+</div>
+
 </div>
 

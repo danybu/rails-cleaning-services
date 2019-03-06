@@ -1,29 +1,34 @@
 class CleanersController < ApplicationController
   skip_before_action :authenticate_user!, only: [:show, :index]
+
   def index
     @cleaners = Cleaner.all
     @cleaners.each do |cleaner|
-      rating_sum = 0.0
-      rating_count = 0
-      cleaner.reservations.each do |reservation|
-        if !reservation.reviews.empty?
-          rating_sum += reservation.reviews[0].rating
-          rating_count += 1
-        end
-      end
-      if rating_sum == 0
-        cleaner.rating_average = 0
-      else
-        cleaner.rating_average = rating_sum / rating_count
-      end
+      average_calcul cleaner
     end
   end
 
   def show
-    @reviews = []
     @cleaner = Cleaner.find(params[:id])
+    average_calcul @cleaner
+    @reviews = []
     reservations = Reservation.where(cleaner_id: params[:id], status:'2') #get all finish rsv of current cleaner
     reservations.each { |rsv| @reviews << Review.find(rsv.id).content  }
     @booking = Reservation.new
+  end
+
+  private
+
+  def average_calcul cleaner
+    sum = 0.0
+    cleaner.average_rating = 0.0
+    counter = 0
+    cleaner.reservations.each do |reservation|
+      if !reservation.reviews.empty?
+        sum += reservation.reviews.first.rating
+        counter += 1
+      end
+      cleaner.average_rating = (sum / counter).round(1)
+    end
   end
 end

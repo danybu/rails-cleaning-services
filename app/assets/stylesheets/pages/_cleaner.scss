@@ -3,28 +3,48 @@
   background-color:white;
 }
 
-.cleaner-show {
-  margin-top: 5px;
+.cleaner-image{
+  background-size: cover;
+  background-position: 50% 30%;
+  padding: 140px 0 50px 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: end;
+  align-items: center;
 }
 
-
 .cleaner-info {
+    background-color:red;
+
+  color:white;
   padding-top: 50px;
+  font-size:25px;
+
 }
 
 .cleaner-description{
+  background-color:green;
+
   padding-top: 50px;
   font-style: italic;
 }
 
 .cleaner-rating{
+  background-color:orange;
+
   padding-top: 50px;
 }
+
+
 
 .cleaner-reviews{
   height: 400px;
 
 }
+
+
+
+
 
 // this is the star rating css
 

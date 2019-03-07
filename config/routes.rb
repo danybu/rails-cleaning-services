@@ -1,6 +1,6 @@
 Rails.application.routes.draw do
 
-  resources :cleaners, only: [:index, :show]
+  resources :cleaners, only: [:index, :show, :new, :create]
   resources :reservations do
       resources :reviews, only: [:create, :new]
   end

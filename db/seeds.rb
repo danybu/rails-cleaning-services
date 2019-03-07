@@ -55,13 +55,23 @@ while User.count < 20
   User.create! email: Faker::Internet.email, encrypted_password: 'password1234', address: Faker::Address.full_address, password: 'thisisapass1234'
 end
 
+def rand_in_range(from, to)
+  rand * (to - from) + from
+end
+
+def rand_time(from, to=Time.now)
+  Time.at(rand_in_range(from.to_f, to.to_f))
+end
+
+
 guard = 1
 while Reservation.count < 20
   my_res = Reservation.new
   my_res.user = User.find(guard)
   my_res.cleaner = Cleaner.find(rand(1..5))
   my_res.status = rand(1..3).to_s
-  my_res.reserved_on = Time.now
+  my_res.reserved_on = rand_time(20.days.ago,2.days.ago)
+  my_res.reserved_until = rand_time(2.days.ago)
   guard += 1
   my_res.save
 end

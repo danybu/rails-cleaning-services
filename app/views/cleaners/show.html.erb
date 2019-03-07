@@ -1,7 +1,6 @@
 <div class="container">
   <!-- under is description and picture -->
-  <div class="row center-block cleaner-show">
-
+  <div class="row cleaner-image">
    <div class="col-sm-2 text-center">
     <%= cl_image_tag @cleaner.photo_url,width:150, height: 150, crop: :fill, gravity: :face, radius: 100 %>
   </div>
@@ -18,43 +17,51 @@
     <div class="stars-outer">
       <div class="stars-inner"></div>
     </div>
-    <br>
-    <small>
-      <span id='rating'><%=var%></span> / 5
-    </small>
+    <div class="col-sm-6 text-center cleaner-description">
+      " <%= @cleaner.description %>"
+    </div>
+    <% var = @cleaner.average_rating  %>
+    <div class="col-sm-3 text-center cleaner-rating">
+      <div class="stars-outer">
+        <div class="stars-inner"></div>
+      </div>
+      <br>
+      <small>
+        <span id='rating'><%=var%></span> / 5
+      </small>
+    </div>
+
   </div>
-</div>
 
+  <!-- book me action button -->
+  <div class="row  cleaner-show-all" style='background-color:brown;'>
+    <div class='text-center'>
+      <% if user_signed_in? %>
+      <%= simple_form_for @booking do |f|  %>
+      <%= f.hidden_field :cleaner_id, value: @cleaner.id %>
+      <%= f.hidden_field :user_id, value: current_user.id %>
+      <%= f.text_field :reserved_on, value:"11/30/2018" , class: "form-control input-group-text" %>
+      <%= f.button :submit,'BOOK ME', class: "btn btn-danger" %>
+      <% end %>
+    </div>
+    <% else %>
 
-<!-- book me action button -->
-<div class="row center-block cleaner-show-all" style='background-color:brown;'>
-  <div class='text-center'>
-    <% if user_signed_in? %>
-    <%= simple_form_for @booking do |f|  %>
-    <%= f.hidden_field :cleaner_id, value: @cleaner.id %>
-    <%= f.hidden_field :user_id, value: current_user.id %>
-    <%= f.text_field :reserved_on, value:"11/30/2018" , class: "form-control input-group-text" %>
-    <%= f.button :submit,'BOOK ME', class: "btn btn-danger" %>
+    <div class='text-center'>
+      <div class="btn btn-primary">
+        <%= link_to 'sign in make a reservation', new_user_session_path %>
+      </div>
+    </div>
     <% end %>
   </div>
-  <% else %>
 
-  <div class='text-center'>
-    <div class="btn btn-primary">
-      <%= link_to 'sign in make a reservation', new_user_session_path %>
-    </div>
-  </div>
-  <% end %>
-</div>
+  <!-- review section -->
 
-<!-- review section -->
-
-<div class="row center-block cleaner-show-all" style='background-color:beige;'>
-  <div class="text-center">
-   <%= @cleaner.name %>'s reviews :
+  <div class="row cleaner-show-all" style='background-color:beige;'>
+    <div class="text-center">
+     <%= @cleaner.name %>'s reviews :
+   </div>
  </div>
-</div>
-<div class="row center-block  cleaner-show-all " style='background-color:orange;'>
+ <div class="row  cleaner-show-all " style='background-color:orange;'>
   <div class="d-flex flex-column">
     <% @reviews.each do |review| %>
     <div class="d-flex justify-content-center cleaner-reviews" style='background-color:purple;'>
@@ -63,7 +70,7 @@
     <% end %>
   </div>
 </div>
-</div>
+
 
 
 
@@ -80,33 +87,49 @@
 
 
 
+
+
 <script>
-$(function() {
-  console.log($('input[name="reservation[reserved_on]"]'));
-  $('input[name="reservation[reserved_on]"]').daterangepicker({
-    startDate:'12/31/2018',
-    endDate: '12/31/2020',
-    singleDatePicker: true,
-    showDropdowns: true,
-    timePicker: true,
-    timePicker24Hour: true,
-    applyButtonClasses: 'btn btn-primary center',
-    cancelButtonClasses: 'btn btn-danger center',
-    minDate:"10/20/2018",
-    setStartDate:"10/20/2018",
-    minYear: 1901,
-    maxYear: parseInt(moment().format('YYYY'),10),
-  }, function(start, end, label) {
-    console.log('moment')
-    console.log(moment())
-    console.log('start')
-    console.log(start);
-    console.log('end')
-    console.log(end);
-    console.log('lable')
-    console.log(label);
+  const pic = () => {
+    const elem = document.querySelector('.cleaner-image');
+    elem.style.backgroundImage = "url('https://cdn-images-1.medium.com/max/2000/0*Rp48l4z21Xh7NhKA')";
+  };
+  pic();
+</script>
+
+
+
+
+
+
+
+<script>
+  $(function() {
+    console.log($('input[name="reservation[reserved_on]"]'));
+    $('input[name="reservation[reserved_on]"]').daterangepicker({
+      startDate:'12/31/2017',
+      endDate: '12/31/2020',
+      singleDatePicker: true,
+      showDropdowns: true,
+      timePicker: true,
+      timePicker24Hour: true,
+      applyButtonClasses: 'btn btn-primary center',
+      cancelButtonClasses: 'btn btn-danger center',
+      minDate:"10/20/2018",
+      setStartDate:"10/20/2018",
+      minYear: 1901,
+      maxYear: parseInt(moment().format('YYYY'),10),
+    }, function(start, end, label) {
+      console.log('moment')
+      console.log(moment())
+      console.log('start')
+      console.log(start);
+      console.log('end')
+      console.log(end);
+      console.log('lable')
+      console.log(label);
+    });
   });
-});
 </script>
 
 

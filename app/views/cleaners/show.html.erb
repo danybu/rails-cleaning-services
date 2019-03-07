@@ -1,74 +1,74 @@
 <div class="container">
+
   <!-- under is description and picture -->
   <div class="row cleaner-image">
-   <div class="col-sm-2 text-center">
-    <%= cl_image_tag @cleaner.photo_url,width:150, height: 150, crop: :fill, gravity: :face, radius: 100 %>
-  </div>
-  <div class="col-sm-2 text-center cleaner-info">
-    <%= @cleaner.name %>,
-    <%= @cleaner.age %> <br>
-    <%= @cleaner.price %> €   <br>
-  </div>
-  <div class="col-sm-6 text-center cleaner-description">
-    " <%= @cleaner.description %>"
-  </div>
-  <% var = @cleaner.average_rating  %>
-  <div class="col-sm-2 text-center cleaner-rating">
-    <div class="stars-outer">
-      <div class="stars-inner"></div>
+    <span id="hidden-cleaner-picture"><%=@cleaner.photo_url %></span>
+    <div class="col-sm-2">
+      <div class="text-center cleaner-info">
+        <%= @cleaner.name %>,
+        <%= @cleaner.age %> <br>
+        <%= @cleaner.price %> €   <br>
+      </div>
     </div>
-    <div class="col-sm-6 text-center cleaner-description">
-      " <%= @cleaner.description %>"
+
+    <div class="col-sm-6">
+      <div class=" text-center cleaner-description">
+        " <%= @cleaner.description %>"
+      </div>
     </div>
+
     <% var = @cleaner.average_rating  %>
-    <div class="col-sm-3 text-center cleaner-rating">
-      <div class="stars-outer">
-        <div class="stars-inner"></div>
+    <div class="col-sm-2">
+      <div class="text-center cleaner-rating">
+        <div class="stars-outer">
+          <div class="stars-inner">
+          </div>
+        </div>
+        <br>
+        <small>
+          <span id='rating'><%=var%></span> / 5
+        </small>
       </div>
-      <br>
-      <small>
-        <span id='rating'><%=var%></span> / 5
-      </small>
     </div>
-
   </div>
 
-  <!-- book me action button -->
-  <div class="row  cleaner-show-all" style='background-color:brown;'>
-    <div class='text-center'>
-      <% if user_signed_in? %>
-      <%= simple_form_for @booking do |f|  %>
-      <%= f.hidden_field :cleaner_id, value: @cleaner.id %>
-      <%= f.hidden_field :user_id, value: current_user.id %>
-      <%= f.text_field :reserved_on, value:"11/30/2018" , class: "form-control input-group-text" %>
-      <%= f.button :submit,'BOOK ME', class: "btn btn-danger" %>
-      <% end %>
-    </div>
-    <% else %>
-
-    <div class='text-center'>
-      <div class="btn btn-primary">
-        <%= link_to 'sign in make a reservation', new_user_session_path %>
-      </div>
-    </div>
+<!-- book me action button -->
+<div class="row">
+  <div class='cleaner-show-all text-center'>
+    <% if user_signed_in? %>
+    <%= simple_form_for @booking do |f|  %>
+    <%= f.hidden_field :cleaner_id, value: @cleaner.id %>
+    <%= f.hidden_field :user_id, value: current_user.id %>
+    <%= f.text_field :reserved_on, value:"11/30/2018" , class: "form-control input-group-text" %>
+    <%= f.button :submit,'BOOK ME', class: "btn btn-danger" %>
     <% end %>
   </div>
+  <% else %>
 
-  <!-- review section -->
+  <div class='text-center'>
+    <div class="btn btn-primary">
+      <%= link_to 'sign in make a reservation', new_user_session_path %>
+    </div>
+  </div>
+  <% end %>
+</div>
 
-  <div class="row cleaner-show-all" style='background-color:beige;'>
-    <div class="text-center">
-     <%= @cleaner.name %>'s reviews :
-   </div>
- </div>
- <div class="row  cleaner-show-all " style='background-color:orange;'>
+<!-- review section -->
+
+<div class="row">
+  <div class="text-center cleaner-show-all">
+    <%= @cleaner.name %>'s reviews :
+  </div>
+</div>
+<div class="row cleaner-show-all ">
   <div class="d-flex flex-column">
     <% @reviews.each do |review| %>
-    <div class="d-flex justify-content-center cleaner-reviews" style='background-color:purple;'>
+    <div class="d-flex justify-content-center cleaner-reviews">
       "<%= review  %>"
     </div>
     <% end %>
   </div>
+</div>
 </div>
 
 
@@ -80,25 +80,23 @@
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+<!-- did not touch this part as DANY works on it  -->
+
 <script type="text/javascript" src="https://cdn.jsdelivr.net/jquery/latest/jquery.min.js"></script>
 <script type="text/javascript" src="https://cdn.jsdelivr.net/momentjs/latest/moment.min.js"></script>
 <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.min.js"></script>
 <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.css" />
-
-
-
-
-
-<script>
-  const pic = () => {
-    const elem = document.querySelector('.cleaner-image');
-    elem.style.backgroundImage = "url('https://cdn-images-1.medium.com/max/2000/0*Rp48l4z21Xh7NhKA')";
-  };
-  pic();
-</script>
-
-
-
 
 
 

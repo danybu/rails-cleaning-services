@@ -1,6 +1,5 @@
 const star_rating = () => {
   const checkElement = document.getElementById('rating')
-  console.log(checkElement)
   if(checkElement) {
   const starTotal = 5;
   const ratingOnPage = document.getElementById('rating').innerText; //1

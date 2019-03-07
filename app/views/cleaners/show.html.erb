@@ -35,7 +35,7 @@
     <%= simple_form_for @booking do |f|  %>
     <%= f.hidden_field :cleaner_id, value: @cleaner.id %>
     <%= f.hidden_field :user_id, value: current_user.id %>
-    <%= f.datetime_select :reserved_on, ampm: true,minute_step: 60 %>
+    <%= f.text_field :reserved_on  %>
     <%= f.button :submit,"Book Me ", class: "btn btn-danger" %>
     <% end %>
   </div>
@@ -72,9 +72,8 @@
 <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.min.js"></script>
 <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.css" />
 <script>
-  $('input[name="birthday"]').daterangepicker();
+  $('#reservation_reserved_on').daterangepicker();
 </script>
-<input type="text" name="birthday" value="10/24/1984" />
 
 <script>
   const d = new Date;

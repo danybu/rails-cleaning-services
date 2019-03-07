@@ -4,15 +4,10 @@ import { star_rating } from './star_rating'
 star_rating();
 hoverCard();
 
-// import { hoverCard } from '/hover-card'
 import mapboxgl from 'mapbox-gl';
 const initMapbox = () => {
   const mapElement = document.getElementById('map');
 
-//   if (mapElement) { // only build a map if there's a div#map to inject into
-
-// }
-// };
   if (mapElement) {
   // [ ... ]
       mapboxgl.accessToken = mapElement.dataset.mapboxApiKey;

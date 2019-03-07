@@ -1,7 +1,7 @@
 import "bootstrap";
 import { hoverCard } from './hover-card';
-import { star_rating } from './star_rating'
-star_rating();
+// import { star_rating } from './star_rating'/
+// star_rating();
 hoverCard();
 
 import mapboxgl from 'mapbox-gl';

@@ -11,8 +11,9 @@
   <link href='https://api.mapbox.com/mapbox-gl-js/v0.53.0/mapbox-gl.css' rel='stylesheet' />
   <%#= stylesheet_pack_tag 'application', media: 'all' %> <!-- Uncomment if you import CSS in app/javascript/packs/application.js -->
 </head>
-<body>
+<body class="site">
   <%= render 'shared/navbar' %>
+  <main class="site-content">
   <% if !notice.nil?  %>
   <p class="notice"><%= notice %></p>
     <% elsif !alert.nil?  %>
@@ -20,6 +21,7 @@
    <%= alert %></p>
   <% end  %>
   <%= yield %>
+  </main>
   <%= render 'shared/footer' %>
   <%= javascript_include_tag 'application' %>
   <%= javascript_pack_tag 'application' %>

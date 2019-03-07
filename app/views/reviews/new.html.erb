@@ -7,7 +7,7 @@
     </div>
 
     <div class="review-photo">
-      <%= image_tag "poetsvrouw.jpg", alt: "cleaner.photo", width: 200%>
+      <%= cl_image_tag @reservation.cleaner.photo_url, width: 200%>
     </div>
 
     <div class="review-rating">

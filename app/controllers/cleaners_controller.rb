@@ -1,5 +1,5 @@
 class CleanersController < ApplicationController
-  skip_before_action :authenticate_user!, only: [:show, :index]
+  skip_before_action :authenticate_user!, only: [:show, :index, :new, :create]
 
   def index
     @cleaners = Cleaner.all
@@ -24,6 +24,20 @@ class CleanersController < ApplicationController
     @booking = Reservation.new
   end
 
+  def new
+  @cleaner = Cleaner.new
+  end
+
+  def create
+    @cleaner = Cleaner.create(cleaner_params)
+    if @cleaner.save
+      redirect_to cleaners_path
+    else
+      render :new
+    end
+  end
+
+
   private
 
   def average_calcul cleaner
@@ -38,4 +52,9 @@ class CleanersController < ApplicationController
       cleaner.average_rating = (sum / counter).round(1)
     end
   end
+
+  def cleaner_params
+    params.require(:cleaner).permit(:name, :description, :age, :price, :address, :photo_url)
+  end
+
 end

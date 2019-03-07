@@ -7,47 +7,42 @@
 #   Character.create(name: 'Luke', movie: movies.first)
 
 
-
-
 Cleaner.create!(name:"Karina",
   description:"Takes the job too serious, we think. Top notch.",
-  price: rand(7..20), age: 30, photo_url:"poetsvrouw", address: "Domeinstraat 3, Leuven")
-Cleaner.create!(name:"Samira",
-  description:"She's got a sponge and not afraid to use it",
-  price: rand(7..20), age: 33, photo_url:"kitchen", address:"Smallandlaan 3, Antwerpen")
+  price: rand(7..20), age: 30, remote_photo_url_url:'https://res.cloudinary.com/df0udw5lo/image/upload/v1551957349/m0vuiouevhxzpce3pyqe.jpg', address: "Domeinstraat 3, Leuven")
 Cleaner.create!(name:"Christina",
   description:"Basically just sits there for an hour or two.",
-  price: rand(7..20), age: 23, photo_url:"belgique", address:"Pierre Van Humbeekstraat 33, 1080 Sint-Jans-Molenbeek")
+  price: rand(7..20), age: 23, remote_photo_url_url:"https://res.cloudinary.com/df0udw5lo/image/upload/v1551814647/belgique", address:"Pierre Van Humbeekstraat 33, 1080 Sint-Jans-Molenbeek")
 Cleaner.create!(name:"Sad Sophie",
   description:"Not her first carreer choice",
-  price: rand(7..20), age: 31, photo_url:"femme-de-menage-1", address:"gemeenteplein 26, 3010 Kessel-Lo")
+  price: rand(7..20), age: 31, remote_photo_url_url:"https://res.cloudinary.com/df0udw5lo/image/upload/v1551814647/femme-de-menage-1", address:"gemeenteplein 26, 3010 Kessel-Lo")
 Cleaner.create!(name:"Suzy",
   description:"Eats plants. Smiles a lot.",
-  price: rand(7..20), age: 45, photo_url:"full_woman",address:"rue de gosselies 13, charleroi")
+  price: rand(7..20), age: 45, remote_photo_url_url:"https://res.cloudinary.com/df0udw5lo/image/upload/v1551814647/full_woman",address:"rue de gosselies 13, charleroi")
 Cleaner.create!(name:"Hans the hero",
   description:"he's got the power. And man boobs.",
-  price: rand(7..20), age: 29, photo_url:"funny_plumeau", address:"rue du progres 39, froyennes")
+  price: rand(7..20), age: 29, remote_photo_url_url:"https://res.cloudinary.com/df0udw5lo/image/upload/v1551814647/funny_plumeau", address:"rue du progres 39, froyennes")
 Cleaner.create!(name:"Gerald",
   description:"Particular. Old but bendy",
-  price: rand(7..20), age: 49, photo_url:"menage2", address:"Kerkstraat 108, gentbrugge")
+  price: rand(7..20), age: 49, remote_photo_url_url:"https://res.cloudinary.com/df0udw5lo/image/upload/v1551814647/menage2", address:"Kerkstraat 108, gentbrugge")
 Cleaner.create!(name:"Olga",
   description:"She's got a lot of tools!",
-  price: rand(7..20), age: 37, photo_url:"mopping", address:"Leuvensesteenweg 282, Boortmeerbeek")
+  price: rand(7..20), age: 37, remote_photo_url_url:"https://res.cloudinary.com/df0udw5lo/image/upload/v1551814647/mopping", address:"Leuvensesteenweg 282, Boortmeerbeek")
 Cleaner.create!(name:"Lil' Bert",
   description:"Barely walking, we put him to work.",
-  price: rand(7..20), age: 2, photo_url:"baby", address:"avenue des combattants 18, genval")
+  price: rand(7..20), age: 2, remote_photo_url_url:"https://res.cloudinary.com/df0udw5lo/image/upload/v1551814647/baby", address:"avenue des combattants 18, genval")
 Cleaner.create!(name:"Bollywood Boys",
   description:"minimum wage is ok for them as long as they can dance",
-  price: rand(7..20), age: 29, photo_url:"pakistani", address:"meysbrug 4, mechelen")
+  price: rand(7..20), age: 29, remote_photo_url_url:"https://res.cloudinary.com/df0udw5lo/image/upload/v1551814647/pakistani", address:"meysbrug 4, mechelen")
 Cleaner.create!(name:"Tom and Tina",
   description:"Professional, fast, but they argue",
-  price: rand(7..20), age: 30, photo_url:"Poetshulp-met-dienstencheques", address:"rue de la borgogne 44")
+  price: rand(7..20), age: 30, remote_photo_url_url:"https://res.cloudinary.com/df0udw5lo/image/upload/v1551814647/Poetshulp-met-dienstencheques", address:"rue de la borgogne 44")
 Cleaner.create!(name:"Bertrand",
   description:"Can vacuum everywhere. Even in the mountains.",
-  price: rand(7..20), age: 55, photo_url:"vacuum_man", address:"Joseph van instraat 2500 lier")
+  price: rand(7..20), age: 55, remote_photo_url_url:"https://res.cloudinary.com/df0udw5lo/image/upload/v1551814647/vacuum_man", address:"Joseph van instraat 2500 lier")
 Cleaner.create!(name:"Theodore",
   description:"Scared of ladders",
-  price: rand(7..20), age: 33, photo_url:"window", address:"streekbaan 193, vilvoorde")
+  price: rand(7..20), age: 33, remote_photo_url_url:"https://res.cloudinary.com/df0udw5lo/image/upload/v1551814647/window", address:"streekbaan 193, vilvoorde")
 puts "Done seeding cleaners"
 
 

@@ -23,10 +23,17 @@
 .footer-links a:hover {
   opacity: 1;
 }
-.footer .fa-heart {
-  color: #D23333;
-}
 
 .footer-copyright {
   font-size: 15px;
+}
+.site {
+  display: flex;
+  min-height: 100vh;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.site-content {
+  flex: 1;
 }

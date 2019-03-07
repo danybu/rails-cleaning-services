@@ -33,4 +33,3 @@ const fitMapToMarkers = (map, markers) => {
 
 initMapbox();
 
-

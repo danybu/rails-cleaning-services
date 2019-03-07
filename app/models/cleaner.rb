@@ -1,6 +1,6 @@
 class Cleaner < ApplicationRecord
+  include PgSearch
   mount_uploader :photo_url, PhotoUrlUploader
-
   attr_accessor :rating_average
   has_many :reservations
   validates :name, presence: true
@@ -9,6 +9,12 @@ class Cleaner < ApplicationRecord
   geocoded_by :address
   # validates :photo_url, presence: true
   after_validation :geocode, if: :will_save_change_to_address?
+
+   pg_search_scope :search_all,
+    against: [ :name, :description, :age, :price ],
+    using: {
+      tsearch: { prefix: true } # <-- now `superman batm` will return something!
+    }
 
   def isAvailable(new_begin_time, new_end_time)
     reservations.each do |reservation|
@@ -30,6 +36,5 @@ class Cleaner < ApplicationRecord
     end
     return true
   end
-
 end
 

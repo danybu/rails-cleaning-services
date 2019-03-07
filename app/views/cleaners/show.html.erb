@@ -28,15 +28,14 @@
 
 
 <!-- book me action button -->
-
 <div class="row center-block cleaner-show-all" style='background-color:brown;'>
   <div class='text-center'>
     <% if user_signed_in? %>
     <%= simple_form_for @booking do |f|  %>
     <%= f.hidden_field :cleaner_id, value: @cleaner.id %>
     <%= f.hidden_field :user_id, value: current_user.id %>
-    <%= f.datetime_select :reserved_on, ampm: true,minute_step: 60 %>
-    <%= f.button :submit,"Book Me ", class: "btn btn-danger" %>
+    <%= f.text_field :reserved_on, value:"11/30/2018" , class: "form-control input-group-text" %>
+    <%= f.button :submit,'BOOK ME', class: "btn btn-danger" %>
     <% end %>
   </div>
   <% else %>
@@ -67,31 +66,48 @@
 </div>
 </div>
 
+
+
+
+
+
+
+
+
 <script type="text/javascript" src="https://cdn.jsdelivr.net/jquery/latest/jquery.min.js"></script>
 <script type="text/javascript" src="https://cdn.jsdelivr.net/momentjs/latest/moment.min.js"></script>
 <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.min.js"></script>
 <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.css" />
-<script>
-  $('input[name="birthday"]').daterangepicker();
-</script>
-<input type="text" name="birthday" value="10/24/1984" />
+
+
 
 <script>
-  const d = new Date;
-  $(function() {
-    $('input[name="birthday"]').daterangepicker({
-      singleDatePicker: true,
-      showDropdowns: true,
-      timePicker: true,
-      timePicker24Hour: true,
-      minYear: d.getFullYear(),
-      minDate: d.getDate(),
-      applyButtonClasses: 'btn btn-primary',
-      cancelButtonClasses: 'btn btn-danger',
-      maxYear: parseInt(moment().format('YYYY'),10)
-    }, function(start, end, label) {
-      var years = moment().diff(start, 'years');
-      alert("You have booked a reservation for " + moment() );
-    });
+$(function() {
+  console.log($('input[name="reservation[reserved_on]"]'));
+  $('input[name="reservation[reserved_on]"]').daterangepicker({
+    startDate:'12/31/2018',
+    endDate: '12/31/2020',
+    singleDatePicker: true,
+    showDropdowns: true,
+    timePicker: true,
+    timePicker24Hour: true,
+    applyButtonClasses: 'btn btn-primary center',
+    cancelButtonClasses: 'btn btn-danger center',
+    minDate:"10/20/2018",
+    setStartDate:"10/20/2018",
+    minYear: 1901,
+    maxYear: parseInt(moment().format('YYYY'),10),
+  }, function(start, end, label) {
+    console.log('moment')
+    console.log(moment())
+    console.log('start')
+    console.log(start);
+    console.log('end')
+    console.log(end);
+    console.log('lable')
+    console.log(label);
   });
+});
 </script>
+
+

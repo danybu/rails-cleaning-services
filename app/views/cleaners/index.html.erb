@@ -4,8 +4,20 @@
  <p>Family newsletters with fancy pictures and cleaning houses, you probably don't see the common ground.  But we at <%= link_to "Tribu", "https://www.mytribunews.com/en/" %>, we shine in both.  You'll see. Just try out one of our cleaning (wo)men. They'll scrub away your sorrows!</p>
 </div>
 
-<div class="container-own">
-
+<div class="search-container">
+<%= form_tag cleaners_path, method: :get do %>
+  <%= number_field_tag :distance,
+    params[:distance],
+    class: "form-control",
+    placeholder: "Distance radius"
+  %>
+  <%= text_field_tag :search,
+    params[:search],
+    class: "form-control search-cleaner",
+    placeholder: "Find a cleaner"
+  %>
+  <%= submit_tag "search", class:"btn btn-success" %>
+<% end %>
   <h2>Book our heroes of hygiene</h2>
   <div class="container">
     <div class="row">

@@ -2,17 +2,27 @@ class CleanersController < ApplicationController
   skip_before_action :authenticate_user!, only: [:show, :index]
 
   def index
-    @cleaners = Cleaner.all
+    # if params[:search]
+    #   @cleaners = Cleaner.search_all(params[:search])
+    # else
+      @cleaners = Cleaner.all
+    # end
+
+    if current_user&.address
+      @cleaners = @cleaners.near(current_user.address, params[:distance])
+    end
     @cleaners.each do |cleaner|
       average_calcul cleaner
     end
-    cleaners_map = Cleaner.where.not(latitude: nil, longitude: nil)
+
+    cleaners_map = @cleaners.where.not(latitude: nil, longitude: nil)
     @markers = cleaners_map.map do |cleaner|
       {
         lng: cleaner.longitude,
         lat: cleaner.latitude
       }
     end
+
   end
 
   def show
@@ -26,7 +36,7 @@ class CleanersController < ApplicationController
 
   private
 
-  def average_calcul cleaner
+  def average_calcul(cleaner)
     sum = 0.0
     cleaner.average_rating = 0.0
     counter = 0

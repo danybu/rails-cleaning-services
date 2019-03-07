@@ -2,14 +2,14 @@ class CleanersController < ApplicationController
   skip_before_action :authenticate_user!, only: [:show, :index]
 
   def index
-    # if params[:search]
-    #   @cleaners = Cleaner.search_all(params[:search])
-    # else
+    if params[:search]
+      @cleaners = Cleaner.search_all(params[:search])
+    else
       @cleaners = Cleaner.all
-    # end
+    end
 
     if current_user&.address
-      @cleaners = @cleaners.near(current_user.address, params[:distance])
+      @cleaners = @cleaners.near(current_user.address, 10)
     end
     @cleaners.each do |cleaner|
       average_calcul cleaner

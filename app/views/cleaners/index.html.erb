@@ -6,17 +6,12 @@
 
 <div class="search-container">
 <%= form_tag cleaners_path, method: :get do %>
-  <%= number_field_tag :distance,
-    params[:distance],
-    class: "form-control",
-    placeholder: "Distance radius"
-  %>
   <%= text_field_tag :search,
     params[:search],
     class: "form-control search-cleaner",
     placeholder: "Find a cleaner"
   %>
-  <%= submit_tag "search", class:"btn btn-success" %>
+  <!-- <%= submit_tag "search", class:"btn btn-success" %> -->
 <% end %>
   <h2>Book our heroes of hygiene</h2>
   <div class="container">

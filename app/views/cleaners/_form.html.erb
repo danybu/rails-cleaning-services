@@ -1,0 +1,29 @@
+<%= simple_form_for(@cleaner) do |f| %>
+ <% if @cleaner.errors.any? %>
+   <div class="errors-container">
+     <ul>
+       <% @cleaner.errors.full_messages.each do |message| %>
+         <li><%= message %></li>
+       <% end %>
+     </ul>
+   </div>
+ <% end %>
+
+ <!-- [...] all the fields -->
+
+<div class="form-inputs">
+  <%= f.input :name %>
+  <%= f.input :description %>
+  <%= f.input :age %>
+  <%= f.input :price %>
+  <%= f.input :address %>
+  <%= f.label :photo %>
+  <%= f.file_field :photo_url %>
+  <%= f.input :photo_url_change, as: :hidden %>
+</div>
+<hr>
+<div>
+<%= f.submit class: 'btn btn-primary' %>
+</div>
+<% end %>
+

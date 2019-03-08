@@ -16,6 +16,21 @@ class Cleaner < ApplicationRecord
       tsearch: { prefix: true } # <-- now `superman batm` will return something!
     }
 
+  # for js
+  def availabilities
+    availabilities = {}
+    reservations.each do |reservation|
+      date_string = reservation.reserved_on.strftime("%d/%m/%Y") # for js
+      availabilities[date_string]
+      if reservation.reserved_on.hour <= 12
+        availabilities[date_string] = 'am'
+      else
+        availabilities[date_string] = 'pm'
+      end
+    end
+    return availabilities
+  end
+
   def isAvailable(new_begin_time, new_end_time)
     reservations.each do |reservation|
       puts "booking:" + new_begin_time.to_s + " " + new_end_time.to_s

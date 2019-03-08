@@ -1,0 +1,19 @@
+.div-button {
+  background-color: rgba(200,200,200,0.8);
+  border: 1px solid white;
+  width:50%;
+  padding:10px 5px;
+}
+
+.buttons-div {
+  display:flex;
+  font-size:11px;
+}
+
+.selected {
+  background-color : rgba(0,200,50,0.6);
+}
+
+.unavailable {
+  background-color: red;
+}

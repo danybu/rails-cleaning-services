@@ -5,13 +5,18 @@
 </div>
 
 <div class="search-container">
-<%= form_tag cleaners_path, method: :get do %>
+<%= form_tag cleaners_path, method: :get, class:"search-form" do %>
   <%= text_field_tag :search,
     params[:search],
     class: "form-control search-cleaner",
     placeholder: "Find a cleaner"
   %>
-  <!-- <%= submit_tag "search", class:"btn btn-success" %> -->
+  <%= number_field_tag :distance,
+    params[:distance],
+    class: "form-control search-cleaner distance-input-field",
+    placeholder: "Distance"
+  %>
+  <%= submit_tag "search", class:"btn btn-success" %>
 <% end %>
   <h2>Book our heroes of hygiene</h2>
   <div class="container">

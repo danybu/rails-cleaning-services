@@ -68,7 +68,7 @@ class CleanersController < ApplicationController
   end
 
   def cleaner_params
-    params.require(:cleaner).permit(:name, :description, :age, :price, :address, :photo_url)
+    params.require(:cleaner).permit(:name, :description, :age, :price, :address, :photo_url, :availabilities)
   end
 
 end

@@ -65,8 +65,8 @@ class Cleaner < ApplicationRecord
            pm_available = false
          end
        end
-       return { am: am_available, pm: pm_available }
      end
+       return { am: am_available, pm: pm_available }
    end
 end
 

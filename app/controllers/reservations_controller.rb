@@ -22,14 +22,14 @@ class ReservationsController < ApplicationController
       reserved_on = reserved_on.change( hour: 13, min: 0, sec: 0 )
     end
     if pm
-      reserved_until = reserved_until.change({ hour: 12, min: 0, sec: 0 })
-    else
       reserved_until = reserved_until.change({ hour: 18, min: 0, sec: 0 })
+    else
+      reserved_until = reserved_until.change({ hour: 12, min: 0, sec: 0 })
     end
+
     result_params = reservation_params
     result_params[:reserved_on] = reserved_on
     result_params[:reserved_until] = reserved_until
-
     @reservation = Reservation.create!(result_params.except(:before_noon, :after_noon))
     if @reservation.save
       redirect_to reservations_path

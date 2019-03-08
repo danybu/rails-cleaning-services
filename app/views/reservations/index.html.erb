@@ -1,47 +1,51 @@
 <div class="container">
-<h1>Your Reservations</h1>
+  <h1>Your Reservations</h1>
   <ul id="Reservations">
     <% sorted_reservations = @reservations.sort_by &:reserved_on%>
     <% sorted_reservations.each do |reservation| %>
-      <ul>
-        <div class="notification">
-          <%= cl_image_tag reservation.cleaner.photo_url, height: 200, width: 200, crop: :fill, gravity: :face %>
-          <div class="notification-content">
-             <p> <%= reservation.reserved_on.strftime("%d/%m/%Y %H") %>:00 - <%= reservation.reserved_until.strftime("%d/%m/%Y %H") %>:00 </p>
-             <h4><%= Cleaner.find(reservation.cleaner_id).name%> </h4>
-          </div>
-          <% if Time.now > reservation.reserved_on %>
-            <% if Review.where(reservation_id:reservation.id).empty? %>
-              <div class="button-notification-action">
-                <%= link_to "Write a Review", new_reservation_review_path(reservation), class: 'button-tribu' %>
-              </div>
-            <% else %>
-              <div class="button-notification-star">
-              <% test = Review.where(reservation_id:reservation.id).first.rating %>
-                <i> Rated : </i>
-                <i class="<%= test>0 ? 'fa fa-star checked' : 'fa fa-star' %>"></i>
-                <i class="<%= test>1 ? 'fa fa-star checked' : 'fa fa-star' %>"></i>
-                <i class="<%= test>2 ? 'fa fa-star checked' : 'fa fa-star' %>"></i>
-                <i class="<%= test>3 ? 'fa fa-star checked' : 'fa fa-star' %>"></i>
-                <i class="<%= test>4 ? 'fa fa-star checked' : 'fa fa-star' %>"></i>
-              </div>
-            <% end %>
-          <% end %>
-          <div class="button-notification-status">
-            <% if Time.now > reservation.reserved_on %>
-            <p> Status : DONE </p>
-            <% else %>
-            <p> Status : PENDING </p>
-           <% end %>
-          </div>
+    <ul>
+      <div class="notification">
+        <%= cl_image_tag reservation.cleaner.photo_url, height: 200, width: 200, crop: :fill, gravity: :face %>
+        <div class="notification-content">
+         <p> <%= reservation.reserved_on.strftime("%d/%m/%Y %H") %>:00 - <%= reservation.reserved_until.strftime("%d/%m/%Y %H") %>:00 </p>
+         <h4><%= Cleaner.find(reservation.cleaner_id).name%> </h4>
+       </div>
+       <% if Time.now > reservation.reserved_on %>
+       <% if Review.where(reservation_id:reservation.id).empty? %>
+       <div class="button-notification-action">
+        <%= link_to "Write a Review", new_reservation_review_path(reservation), class: 'button-tribu' %>
+      </div>
+      <% else %>
 
-          <div class="notification-actions">
-            <a href="#">Edit <i class="fas fa-pencil-alt"></i></a>
-            <%= link_to reservation_path(reservation.id), method: :delete, data: { confirm: "Delete Prestation on #{reservation.reserved_on}? of #{Cleaner.find(reservation.cleaner_id).name}" } do %>
-              <i class="far fa-trash-alt"></i> </a>
-             <% end %>
-          </div>
-        </div>
-     </ul>
-   <% end %>
+      <div class="button-notification-star">
+
+        <% test = Review.where(reservation_id:reservation.id).first.rating %>
+        <div>
+          <i> Rated : </i>
+          <i class="<%= test>0 ? 'fa fa-star checked' : 'fa fa-star' %>"></i>
+          <i class="<%= test>1 ? 'fa fa-star checked' : 'fa fa-star' %>"></i>
+          <i class="<%= test>2 ? 'fa fa-star checked' : 'fa fa-star' %>"></i>
+          <i class="<%= test>3 ? 'fa fa-star checked' : 'fa fa-star' %>"></i>
+          <i class="<%= test>4 ? 'fa fa-star checked' : 'fa fa-star' %>"></i>
+        </div> <p class="description-small"> <%= Review.where(reservation_id:reservation.id).first.content %> </p>
+      </div>
+      <% end %>
+      <% end %>
+      <div class="button-notification-status">
+        <% if Time.now > reservation.reserved_on %>
+        <p> Status : DONE </p>
+        <% else %>
+        <p> Status : PENDING </p>
+        <% end %>
+      </div>
+
+      <div class="notification-actions">
+        <a href="#">Edit <i class="fas fa-pencil-alt"></i></a>
+        <%= link_to reservation_path(reservation.id), method: :delete, data: { confirm: "Delete Prestation on #{reservation.reserved_on}? of #{Cleaner.find(reservation.cleaner_id).name}" } do %>
+        <i class="far fa-trash-alt"></i> </a>
+        <% end %>
+      </div>
+    </div>
+  </ul>
+  <% end %>
 </div>

@@ -10,9 +10,9 @@ class Cleaner < ApplicationRecord
   # validates :photo_url, presence: true
   after_validation :geocode, if: :will_save_change_to_address?
 
-   pg_search_scope :search_all,
-    against: [ :name, :description, :age, :price ],
-    using: {
+  pg_search_scope :search_all,
+  against: [ :name, :description, :age, :price ],
+  using: {
       tsearch: { prefix: true } # <-- now `superman batm` will return something!
     }
 
@@ -56,7 +56,7 @@ class Cleaner < ApplicationRecord
   def available(test_day)
     am_available = true
     pm_available = true
-      reservations.each do |reservation|
+    reservations.each do |reservation|
        date_string = reservation.reserved_on.strftime("%d/%m/%Y") # for js
        if (date_string == test_day.strftime("%d/%m/%Y"))
          if reservation.reserved_on.hour <= 12
@@ -65,8 +65,10 @@ class Cleaner < ApplicationRecord
            pm_available = false
          end
        end
-       return { am: am_available, pm: pm_available }
      end
+     return { am: am_available, pm: pm_available }
+
    end
-end
+
+ end
 

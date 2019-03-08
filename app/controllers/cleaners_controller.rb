@@ -4,15 +4,13 @@ class CleanersController < ApplicationController
   def index
     if params[:search].present?
       @cleaners = Cleaner.search_all(params[:search])
-     else
-        @cleaners = Cleaner.all
-     end
+    else
+      @cleaners = Cleaner.all
+    end
 
     if current_user&.address
       @cleaners = @cleaners.near(current_user.address, params[:distance].presence || 20)
     end
-
-
 
     cleaners_map = @cleaners.where.not(latitude: nil, longitude: nil)
     @markers = cleaners_map.map do |cleaner|
@@ -22,9 +20,9 @@ class CleanersController < ApplicationController
       }
     end
 
-      @cleaners.each do |cleaner|
-        average_calcul cleaner
-       end
+    @cleaners.each do |cleaner|
+      average_calcul cleaner
+    end
   end
 
   def show

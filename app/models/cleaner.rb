@@ -43,13 +43,30 @@ class Cleaner < ApplicationRecord
   #     # puts "new_end_time > reservation.reserved_on) " + (new_end_time > reservation.reserved_on).to_s
   #     # puts "new_end_time <= reservation.reserved_on) " + (new_end_time <= reservation.reserved_on).to_s
 
-  #     if new_begin_time >= reservation.reserved_on && new_begin_time < reservation.reserved_until
-  #       return false
-  #     elsif new_end_time > reservation.reserved_on && new_end_time <= reservation.reserved_until
-  #       return false
-  #     end
-  #   end
-  #   return true
-  # end
+
+      if new_begin_time >= reservation.reserved_on && new_begin_time < reservation.reserved_until
+        return false
+      elsif new_end_time > reservation.reserved_on && new_end_time <= reservation.reserved_until
+        return false
+      end
+    end
+    return true
+  end
+
+def available(test_day)
+   am_available = true
+   pm_available = true
+   reservations.each do |reservation|
+     date_string = reservation.reserved_on.strftime("%d/%m/%Y") # for js
+     if (date_string = test_day.strftime("%d/%m/%Y"))
+       if reservation.reserved_on.hour <= 12
+         am_available = false
+       else
+         pm_available = false
+       end
+   end
+   return { am: am_available, pm: pm_available }
+ end
+end
 end
 

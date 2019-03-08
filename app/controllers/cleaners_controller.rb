@@ -2,18 +2,22 @@ class CleanersController < ApplicationController
   skip_before_action :authenticate_user!, only: [:show, :index, :new, :create]
 
   def index
-    if params[:search]
-      @cleaners = Cleaner.search_all(params[:search])
+    @cleaners = []
+    if @cleaners == []
+      if params[:search]
+        @cleaners = Cleaner.all
+        @cleaners = Cleaner.search_all(params[:search]) if params[:search] != ""
+      else
+        @cleaners = Cleaner.all
+      end
     else
-      @cleaners = Cleaner.all
+      if current_user&.address
+        @cleaners = Cleaner.near(current_user.address, 10)
+      else
+        @cleaners = Cleaner.all
+      end
     end
 
-    if current_user&.address
-      @cleaners = @cleaners.near(current_user.address, 10)
-    end
-    @cleaners.each do |cleaner|
-      average_calcul cleaner
-    end
 
     cleaners_map = @cleaners.where.not(latitude: nil, longitude: nil)
     @markers = cleaners_map.map do |cleaner|
@@ -23,6 +27,9 @@ class CleanersController < ApplicationController
       }
     end
 
+    @cleaners.each do |cleaner|
+      average_calcul cleaner
+    end
   end
 
   def show
@@ -37,7 +44,7 @@ class CleanersController < ApplicationController
   end
 
   def new
-  @cleaner = Cleaner.new
+    @cleaner = Cleaner.new
   end
 
   def create
@@ -70,3 +77,4 @@ class CleanersController < ApplicationController
   end
 
 end
+

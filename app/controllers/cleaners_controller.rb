@@ -9,7 +9,7 @@ class CleanersController < ApplicationController
     end
 
     if current_user&.address
-      @cleaners = @cleaners.near(current_user.address, params[:distance].presence || 20)
+      @cleaners = @cleaners.near(current_user.address, params[:distance].presence || 100)
     end
 
     cleaners_map = @cleaners.where.not(latitude: nil, longitude: nil)
@@ -29,7 +29,7 @@ class CleanersController < ApplicationController
     @cleaner = Cleaner.find(params[:id])
     average_calcul @cleaner
     @reviews = []
-    reservations = Reservation.where(cleaner_id: params[:id], status:'2') #get all finish rsv of current cleaner
+    reservations = Reservation.where(cleaner_id: params[:id], status: '2') #get all finish rsv of current cleaner
     reservations.each do |rsv|
       @reviews << Review.find(rsv.id)
     end
@@ -49,7 +49,6 @@ class CleanersController < ApplicationController
     end
   end
 
-
   private
 
   def average_calcul(cleaner)
@@ -57,7 +56,7 @@ class CleanersController < ApplicationController
     cleaner.average_rating = 0.0
     counter = 0
     cleaner.reservations.each do |reservation|
-      if !reservation.reviews.empty?
+      unless reservation.reviews.empty?
         sum += reservation.reviews.first.rating
         counter += 1
       end
@@ -68,6 +67,4 @@ class CleanersController < ApplicationController
   def cleaner_params
     params.require(:cleaner).permit(:name, :description, :age, :price, :address, :photo_url, :availabilities)
   end
-
 end
-

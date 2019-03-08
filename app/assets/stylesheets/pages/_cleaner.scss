@@ -1,44 +1,67 @@
 
+
 .container{
   background-color:white;
+  margin-top:2em;
 }
+#rating { display: none;}
 
-.cleaner-image{
+small {
+  display: none;
+}
+.cleaner-image {
   border-radius:5px;
-  margin:15px;
+  margin:0;
   background-size: cover;
   background-position: 50% 30%;
-  padding: 140px 0 50px 0;
+  padding: 300px 0 10px 0;
   display: flex;
   flex-direction: column;
   justify-content: end;
   align-items: center;
+
+    small {
+      display:hidden;
+    }
+}
+
+.info-name {
+  font-size: 100px;
+  font-weight: 100;
+  padding:0;
+  margin:0;
 }
 
 .cleaner-info {
-  opacity: 0.5;
-  background-color:#F8F8F8;
+  // opacity: 0.5;
+  // background-color:#F8F8F8;
   color:white;
-  padding-top: 50px;
+  padding-top: 30px;
   font-size:25px;
 
 }
 
 .cleaner-description{
-  opacity: 0.5;
-  background-color:#F8F8F8;
+  // opacity: 0.5;
+  // background-color:#F8F8F8;
   font-color:white;
-  padding-top: 30px;
+  padding-top: 20px;
   font-style: italic;
+  margin-bottom:2em;
 }
 
-.cleaner-rating{
-  opacity: 0.5;
+.info-age, .info-price {
+  font-size:18px;
+  margin-bottom:0;
+  display:inline-block;
+}
 
-  background-color:#F8F8F8;
+.cleaner-rating {
+  // opacity: 0.5;
+  // background-color:#F8F8F8;
   color:white;
   text-align: center;
-  padding-top: 20px;
+  margin-bottom: 20px;
 
 }
 
@@ -46,13 +69,16 @@
 .cleaner-reviews{
   padding:8px;
   text-align:center;
-  height: 150px;
+  font-size:18px;
+  // border-top: 1px solid rgb(200,200,200);
 
 }
+
 .cleaner-show-all{
-
+  width:50%;
+  min-width:200px;
+  margin:0 auto;
 }
-
 
 #hidden-cleaner-picture{
   display:none;
@@ -66,6 +92,7 @@
   position: relative;
   font-family: "Font Awesome 5 Free";
   font-weight: 900;
+  font-size:30px;
 }
 
 .stars-outer::before {

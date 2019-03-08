@@ -2,27 +2,22 @@
 
   <!-- under is description and picture -->
   <div class="row cleaner-image">
+
     <span id="hidden-cleaner-picture"><%=@cleaner.photo_url %></span>
-    <div class="col-sm-2">
+    <div class="col-sm-6">
       <div class="text-center cleaner-info">
-        <%= @cleaner.name %>,
-        <%= @cleaner.age %> <br>
-        <%= @cleaner.price %> €   <br>
+        <div class="info-name"> <%= @cleaner.name %></div>
+        <div class="info-price"> <strong><%= @cleaner.price %></strong>€, </div>
+        <div class="info-age"> <%= @cleaner.age %> years old</div>
       </div>
     </div>
 
-    <div class="col-sm-6">
-      <div class=" text-center cleaner-description">
-        " <%= @cleaner.description %>"
-      </div>
-    </div>
 
     <% var = @cleaner.average_rating  %>
-    <div class="col-sm-2">
+    <div class="col-sm-6">
       <div class="text-center cleaner-rating">
         <div class="stars-outer">
-          <div class="stars-inner">
-          </div>
+          <div class="stars-inner"></div>
         </div>
         <br>
         <small>
@@ -32,50 +27,261 @@
     </div>
   </div>
 
+  <div>
+    <div class=" text-center cleaner-description">
+      " <%= @cleaner.description %>"
+    </div>
+  </div>
+
+
+
+
   <!-- book me action button -->
-  <div class="row  cleaner-show-all" style='background-color:brown;'>
-    <div class='text-center'>
-      <% if user_signed_in? %>
-      <%= simple_form_for @booking do |f|  %>
-      <%= f.hidden_field :cleaner_id, value: @cleaner.id %>
-      <%= f.hidden_field :user_id, value: current_user.id %>
-      <%= f.text_field :reserved_on, value:"01/01/2018" , class: "form-control input-group-text" %>
-      <div class="buttons-div">
-        <div id="before-noon" class="div-button">8 - 12 am</div>
-        <div id="after-noon" class="div-button">13 - 17 pm</div>
+  <div class="row">
+    <div class="cleaner-show-all">
+      <div class='text-center'>
+        <% if user_signed_in? %>
+        <%= simple_form_for @booking do |f|  %>
+        <%= f.hidden_field :cleaner_id, value: @cleaner.id %>
+        <%= f.hidden_field :user_id, value: current_user.id %>
+        <div class="date-booking">
+         <div class="buttons-div">
+          <%= f.text_field :reserved_on, value:"01/01/2018" , class: "form-control input-group-text text-centered" %>
+
+          <div id="before-noon" class="div-button">8 - 12 am</div>
+          <div id="after-noon" class="div-button">13 - 17 pm</div>
+        </div>
       </div>
+      <%= f.button :submit,'BOOK ME', class: "btn btn-lg", id:"cleaner-book-submit" %>
       <%= f.hidden_field :before_noon, value: false %>
       <%= f.hidden_field :after_noon, value: false %>
       <%= f.hidden_field :availabilities, value: @cleaner.availabilities.to_json %>
-      <%= f.button :submit,'BOOK ME', class: "btn btn-danger", id:"cleaner-book-submit" %>
+
       <% end %>
     </div>
     <% else %>
+
 
   <div class='text-center'>
     <div class="btn btn-primary">
       <%= link_to 'sign in make a reservation', new_user_session_path %>
     </div>
+    <% end %>
   </div>
-  <% end %>
 </div>
-
 <!-- review section -->
 <div class="row">
-  <div class="text-center cleaner-show-all">
-    <%= @cleaner.name %>'s reviews :
-  </div>
+  <h2>What others thought of <%=@cleaner.name%></h2>
+
 </div>
 <div class="row cleaner-show-all ">
   <div class="d-flex flex-column">
     <% @reviews.each do |review| %>
-    <div class="d-flex justify-content-center cleaner-reviews">
-      "<%= review  %>"
+    <div class="review-box">
+      <div class="d-flex justify-content-center cleaner-reviews">
+        "<%= review.content %>"
+      </div>
+      <div class="button-notification-star-review">
+        <% test = review.rating %>
+        <i class="<%= test>0 ? 'fa fa-star checked' : 'fa fa-star' %>"></i>
+        <i class="<%= test>1 ? 'fa fa-star checked' : 'fa fa-star' %>"></i>
+        <i class="<%= test>2 ? 'fa fa-star checked' : 'fa fa-star' %>"></i>
+        <i class="<%= test>3 ? 'fa fa-star checked' : 'fa fa-star' %>"></i>
+        <i class="<%= test>4 ? 'fa fa-star checked' : 'fa fa-star' %>"></i>
+      </div>
     </div>
     <% end %>
   </div>
 </div>
 </div>
+
+<!-- calendar section -->
+
+  <main>
+    <div class="toolbar">
+     <%= Time.now.strftime("%B %Y") %>
+    </div>
+    <div class="calendar">
+      <div class="calendar__header">
+        <div>mon</div>
+        <div>tue</div>
+        <div>wed</div>
+        <div>thu</div>
+        <div>fri</div>
+        <div>sat</div>
+        <div>sun</div>
+      </div>
+      <% day = DateTime.new(2019,3,1) %>
+      <div class="calendar__week">
+        <div class ="calendar__day">
+          <div class = "<%= @cleaner.available(day)[:am] ? 'am' : 'am reserved' %>" >&nbsp 1 &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp am </div>
+          <div class = "<%= @cleaner.available(day)[:pm] ? 'pm' : 'pm reserved' %>" >pm </div>
+        </div>
+        <% day2 = DateTime.new(2019,3,2) %>
+        <div class="calendar__day">
+          <div class = "<%= @cleaner.available(day2)[:am] ? 'am' : 'am reserved' %>" >&nbsp 2 &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp am </div>
+          <div class = "<%= @cleaner.available(day2)[:pm] ? 'pm' : 'pm reserved' %>" >pm </div>
+        </div>
+         <% day3 = DateTime.new(2019,3,3) %>
+        <div class="calendar__day">
+          <div class = "<%= @cleaner.available(day3)[:am] ? 'am' : 'am reserved' %>" >&nbsp 3 &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp am </div>
+          <div class = "<%= @cleaner.available(day3)[:pm] ? 'pm' : 'pm reserved' %>" >pm </div>
+        </div>
+         <% day4 = DateTime.new(2019,3,4) %>
+        <div class="calendar__day">
+          <div class = "<%= @cleaner.available(day4)[:am] ? 'am' : 'am reserved' %>" >&nbsp 4 &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp am </div>
+          <div class = "<%= @cleaner.available(day4)[:pm] ? 'pm' : 'pm reserved' %>" >pm </div>
+        </div>
+         <% day5 = DateTime.new(2019,3,5) %>
+        <div class="calendar__day">
+          <div class = "<%= @cleaner.available(day5)[:am] ? 'am' : 'am reserved' %>" >&nbsp 5 &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp am </div>
+          <div class = "<%= @cleaner.available(day5)[:pm] ? 'pm' : 'pm reserved' %>" >pm </div>
+        </div>
+         <% day6 = DateTime.new(2019,3,6) %>
+        <div class="calendar__day">
+          <div class = "<%= @cleaner.available(day6)[:am] ? 'am' : 'am reserved' %>" >&nbsp 6 &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp am </div>
+          <div class = "<%= @cleaner.available(day6)[:pm] ? 'pm' : 'pm reserved' %>" >pm </div>
+        </div>
+         <% day7 = DateTime.new(2019,3,7) %>
+        <div class="calendar__day">
+          <div class = "<%= @cleaner.available(day7)[:am] ? 'am' : 'am reserved' %>" >&nbsp 7 &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp am </div>
+          <div class = "<%= @cleaner.available(day7)[:pm] ? 'pm' : 'pm reserved' %>" >pm </div>
+        </div>
+      </div>
+      <div class="calendar__week">
+        <% day8 = DateTime.new(2019,3,8) %>
+        <div class="calendar__day">
+          <div class = "<%= @cleaner.available(day8)[:am] ? 'am' : 'am reserved' %>" >&nbsp 8 &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp am </div>
+          <div class = "<%= @cleaner.available(day8)[:pm] ? 'pm' : 'pm reserved' %>" >pm </div>
+        </div>
+        <% day9 = DateTime.new(2019,3,9) %>
+        <div class="calendar__day">
+          <div class = "<%= @cleaner.available(day9)[:am] ? 'am' : 'am reserved' %>" >&nbsp 9 &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp am </div>
+          <div class = "<%= @cleaner.available(day9)[:pm] ? 'pm' : 'pm reserved' %>" >pm </div>
+        </div>
+        <% day10 = DateTime.new(2019,3,10) %>
+        <div class="calendar__day">
+          <div class = "<%= @cleaner.available(day10)[:am] ? 'am' : 'am reserved' %>" >&nbsp 10 &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp am </div>
+          <div class = "<%= @cleaner.available(day10)[:pm] ? 'pm' : 'pm reserved' %>" >pm </div>
+        </div>
+        <% day11 = DateTime.new(2019,3,11) %>
+        <div class="calendar__day">
+          <div class = "<%= @cleaner.available(day11)[:am] ? 'am' : 'am reserved' %>" >&nbsp 11 &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp am </div>
+          <div class = "<%= @cleaner.available(day11)[:pm] ? 'pm' : 'pm reserved' %>" >pm </div>
+        </div>
+        <% day12 = DateTime.new(2019,3,12) %>
+        <div class="calendar__day">
+          <div class = "<%= @cleaner.available(day12)[:am] ? 'am' : 'am reserved' %>" >&nbsp 12 &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp am </div>
+          <div class = "<%= @cleaner.available(day12)[:pm] ? 'pm' : 'pm reserved' %>" >pm </div>
+        </div>
+        <% day13 = DateTime.new(2019,3,13) %>
+        <div class="calendar__day">
+          <div class = "<%= @cleaner.available(day13)[:am] ? 'am' : 'am reserved' %>" >&nbsp 13 &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp am </div>
+          <div class = "<%= @cleaner.available(day13)[:pm] ? 'pm' : 'pm reserved' %>" >pm </div>
+        </div>
+        <% day14 = DateTime.new(2019,3,14) %>
+        <div class="calendar__day">
+          <div class = "<%= @cleaner.available(day14)[:am] ? 'am' : 'am reserved' %>" >&nbsp 14 &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp am </div>
+          <div class = "<%= @cleaner.available(day14)[:pm] ? 'pm' : 'pm reserved' %>" >pm </div>
+        </div>
+      </div>
+      <div class="calendar__week">
+        <% day15 = DateTime.new(2019,3,15) %>
+        <div class="calendar__day">
+          <div class = "<%= @cleaner.available(day15)[:am] ? 'am' : 'am reserved' %>" >&nbsp 15 &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp am </div>
+          <div class = "<%= @cleaner.available(day15)[:pm] ? 'pm' : 'pm reserved' %>" >pm </div>
+        </div>
+        <% day16 = DateTime.new(2019,3,16) %>
+        <div class="calendar__day">
+          <div class = "<%= @cleaner.available(day16)[:am] ? 'am' : 'am reserved' %>" >&nbsp 16 &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp am </div>
+          <div class = "<%= @cleaner.available(day16)[:pm] ? 'pm' : 'pm reserved' %>" >pm </div>
+        </div>
+        <% day17 = DateTime.new(2019,3,17) %>
+        <div class="calendar__day">
+          <div class = "<%= @cleaner.available(day17)[:am] ? 'am' : 'am reserved' %>" >&nbsp 17 &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp am </div>
+          <div class = "<%= @cleaner.available(day17)[:pm] ? 'pm' : 'pm reserved' %>" >pm </div>
+        </div>
+        <% day18 = DateTime.new(2019,3,18) %>
+        <div class="calendar__day">
+          <div class = "<%= @cleaner.available(day18)[:am] ? 'am' : 'am reserved' %>" >&nbsp 18 &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp am </div>
+          <div class = "<%= @cleaner.available(day18)[:pm] ? 'pm' : 'pm reserved' %>" >pm </div>
+        </div>
+        <% day19 = DateTime.new(2019,3,19) %>
+        <div class="calendar__day">
+          <div class = "<%= @cleaner.available(day19)[:am] ? 'am' : 'am reserved' %>" >&nbsp 19 &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp am </div>
+          <div class = "<%= @cleaner.available(day19)[:pm] ? 'pm' : 'pm reserved' %>" >pm </div>
+        </div>
+        <% day20 = DateTime.new(2019,3,20) %>
+        <div class="calendar__day">
+          <div class = "<%= @cleaner.available(day20)[:am] ? 'am' : 'am reserved' %>" >&nbsp 20 &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp am </div>
+          <div class = "<%= @cleaner.available(day20)[:pm] ? 'pm' : 'pm reserved' %>" >pm </div>
+        </div>
+        <% day21 = DateTime.new(2019,3,21) %>
+        <div class="calendar__day">
+          <div class = "<%= @cleaner.available(day21)[:am] ? 'am' : 'am reserved' %>" >&nbsp 21 &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp am </div>
+          <div class = "<%= @cleaner.available(day21)[:pm] ? 'pm' : 'pm reserved' %>" >pm </div>
+        </div>
+      </div>
+      <div class="calendar__week">
+        <% day22 = DateTime.new(2019,3,22) %>
+        <div class="calendar__day">
+          <div class = "<%= @cleaner.available(day22)[:am] ? 'am' : 'am reserved' %>" >&nbsp 22 &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp am </div>
+          <div class = "<%= @cleaner.available(day22)[:pm] ? 'pm' : 'pm reserved' %>" >pm </div>
+        </div>
+        <% day23 = DateTime.new(2019,3,23) %>
+        <div class="calendar__day">
+          <div class = "<%= @cleaner.available(day23)[:am] ? 'am' : 'am reserved' %>" >&nbsp 23 &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp am </div>
+          <div class = "<%= @cleaner.available(day23)[:pm] ? 'pm' : 'pm reserved' %>" >pm </div>
+        </div>
+        <% day24 = DateTime.new(2019,3,24) %>
+        <div class="calendar__day">
+          <div class = "<%= @cleaner.available(day24)[:am] ? 'am' : 'am reserved' %>" >&nbsp 24 &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp am </div>
+          <div class = "<%= @cleaner.available(day24)[:pm] ? 'pm' : 'pm reserved' %>" >pm </div>
+        </div>
+        <% day25 = DateTime.new(2019,3,25) %>
+        <div class="calendar__day">
+          <div class = "<%= @cleaner.available(day25)[:am] ? 'am' : 'am reserved' %>" >&nbsp 25 &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp am </div>
+          <div class = "<%= @cleaner.available(day25)[:pm] ? 'pm' : 'pm reserved' %>" >pm </div>
+        </div>
+        <% day26 = DateTime.new(2019,3,26) %>
+        <div class="calendar__day">
+          <div class = "<%= @cleaner.available(day26)[:am] ? 'am' : 'am reserved' %>" >&nbsp 26 &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp am </div>
+          <div class = "<%= @cleaner.available(day26)[:pm] ? 'pm' : 'pm reserved' %>" >pm </div>
+        </div>
+        <% day27 = DateTime.new(2019,3,27) %>
+        <div class="calendar__day">
+          <div class = "<%= @cleaner.available(day27)[:am] ? 'am' : 'am reserved' %>" >&nbsp 27 &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp am </div>
+          <div class = "<%= @cleaner.available(day27)[:pm] ? 'pm' : 'pm reserved' %>" >pm </div>
+        </div>
+        <% day28 = DateTime.new(2019,3,28) %>
+        <div class="calendar__day">
+          <div class = "<%= @cleaner.available(day28)[:am] ? 'am' : 'am reserved' %>" >&nbsp 28 &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp am </div>
+          <div class = "<%= @cleaner.available(day28)[:pm] ? 'pm' : 'pm reserved' %>" >pm </div>
+        </div>
+      </div>
+      <div class="calendar__week">
+        <% day29 = DateTime.new(2019,3,29) %>
+        <div class="calendar__day">
+          <div class = "<%= @cleaner.available(day29)[:am] ? 'am' : 'am reserved' %>" >&nbsp 29 &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp am </div>
+          <div class = "<%= @cleaner.available(day29)[:pm] ? 'pm' : 'pm reserved' %>" >pm </div>
+        </div>
+        <% day30 = DateTime.new(2019,3,30) %>
+        <div class="calendar__day">
+          <div class = "<%= @cleaner.available(day30)[:am] ? 'am' : 'am reserved' %>" >&nbsp 30 &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp am </div>
+          <div class = "<%= @cleaner.available(day30)[:pm] ? 'pm' : 'pm reserved' %>" >pm </div>
+        </div>
+          <% day31 = DateTime.new(2019,3,31) %>
+        <div class="calendar__day">
+          <div class = "<%= @cleaner.available(day31)[:am] ? 'am' : 'am reserved' %>" >&nbsp 31 &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp am </div>
+          <div class = "<%= @cleaner.available(day31)[:pm] ? 'pm' : 'pm reserved' %>" >pm </div>
+        </div>
+        <div class="calendar__day"> </div>
+        <div class="calendar__day"> </div>
+        <div class="calendar__day"> </div>
+        <div class="calendar__day"> </div>
+      </div>
+    </div>
+  </main>
 
 
 <script type="text/javascript" src="https://cdn.jsdelivr.net/jquery/latest/jquery.min.js"></script>

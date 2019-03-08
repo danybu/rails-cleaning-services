@@ -4,13 +4,14 @@ class CleanersController < ApplicationController
   def index
     if params[:search].present?
       @cleaners = Cleaner.search_all(params[:search])
-    else
-      @cleaners = Cleaner.all
-    end
+     else
+        @cleaners = Cleaner.all
+     end
 
     if current_user&.address
       @cleaners = @cleaners.near(current_user.address, params[:distance].presence || 20)
     end
+
 
 
     cleaners_map = @cleaners.where.not(latitude: nil, longitude: nil)
@@ -22,8 +23,8 @@ class CleanersController < ApplicationController
     end
 
       @cleaners.each do |cleaner|
-      average_calcul cleaner
-    end
+        average_calcul cleaner
+       end
   end
 
   def show
@@ -31,12 +32,14 @@ class CleanersController < ApplicationController
     average_calcul @cleaner
     @reviews = []
     reservations = Reservation.where(cleaner_id: params[:id], status:'2') #get all finish rsv of current cleaner
-    reservations.each { |rsv| @reviews << Review.find(rsv.id).content  }
+    reservations.each do |rsv|
+      @reviews << Review.find(rsv.id)
+    end
     @booking = Reservation.new
   end
 
   def new
-  @cleaner = Cleaner.new
+    @cleaner = Cleaner.new
   end
 
   def create
@@ -69,3 +72,4 @@ class CleanersController < ApplicationController
   end
 
 end
+

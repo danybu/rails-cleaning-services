@@ -86,3 +86,15 @@
   content:"\f005 \f005 \f005 \f005 \f005";
   color: #f8ce0b;
 }
+
+.search-form  {
+  display: flex;
+  width: 70%;
+  padding: 20px;
+  max-width: 600px;
+  justify-content: space-evenly;
+}
+
+.distance-input-field  {
+  width: 150px;
+}

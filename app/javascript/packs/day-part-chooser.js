@@ -1,9 +1,12 @@
 
 const checkSubmit = () => {
+  const res = document.querySelector("#reservation_before_noon")
+  if(res){
   if ((document.querySelector("#reservation_before_noon").value == "false") &&
     (document.querySelector("#reservation_after_noon").value == "false"))
   document.querySelector("#cleaner-book-submit").disabled = true;
   else document.querySelector("#cleaner-book-submit").disabled = false;
+  }
 };
 
 const toggleValue = (event,reservationField) => {

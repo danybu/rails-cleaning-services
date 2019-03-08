@@ -31,25 +31,25 @@ class Cleaner < ApplicationRecord
     return availabilities
   end
 
-  def isAvailable(new_begin_time, new_end_time)
-    reservations.each do |reservation|
-      puts "booking:" + new_begin_time.to_s + " " + new_end_time.to_s
-      puts "checking for:"
-      puts reservation.reserved_on.to_s
-      puts reservation.reserved_until.to_s
-      # raise
-      # puts "new_begin_time >= reservation.reserved_on) " + (new_begin_time >= reservation.reserved_on).to_s
-      # puts "new_begin_time < reservation.reserved_until) " + (new_begin_time < reservation.reserved_until).to_s
-      # puts "new_end_time > reservation.reserved_on) " + (new_end_time > reservation.reserved_on).to_s
-      # puts "new_end_time <= reservation.reserved_on) " + (new_end_time <= reservation.reserved_on).to_s
+  # def isAvailable(new_begin_time, new_end_time)
+  #   reservations.each do |reservation|
+  #     puts "booking:" + new_begin_time.to_s + " " + new_end_time.to_s
+  #     puts "checking for:"
+  #     puts reservation.reserved_on.to_s
+  #     puts reservation.reserved_until.to_s
+  #     # raise
+  #     # puts "new_begin_time >= reservation.reserved_on) " + (new_begin_time >= reservation.reserved_on).to_s
+  #     # puts "new_begin_time < reservation.reserved_until) " + (new_begin_time < reservation.reserved_until).to_s
+  #     # puts "new_end_time > reservation.reserved_on) " + (new_end_time > reservation.reserved_on).to_s
+  #     # puts "new_end_time <= reservation.reserved_on) " + (new_end_time <= reservation.reserved_on).to_s
 
-      if new_begin_time >= reservation.reserved_on && new_begin_time < reservation.reserved_until
-        return false
-      elsif new_end_time > reservation.reserved_on && new_end_time <= reservation.reserved_until
-        return false
-      end
-    end
-    return true
-  end
+  #     if new_begin_time >= reservation.reserved_on && new_begin_time < reservation.reserved_until
+  #       return false
+  #     elsif new_end_time > reservation.reserved_on && new_end_time <= reservation.reserved_until
+  #       return false
+  #     end
+  #   end
+  #   return true
+  # end
 end
 

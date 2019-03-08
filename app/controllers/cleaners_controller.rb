@@ -30,7 +30,9 @@ class CleanersController < ApplicationController
     average_calcul @cleaner
     @reviews = []
     reservations = Reservation.where(cleaner_id: params[:id], status:'2') #get all finish rsv of current cleaner
-    reservations.each { |rsv| @reviews << Review.find(rsv.id).content  }
+    reservations.each do |rsv|
+      @reviews << Review.find(rsv.id)
+    end
     @booking = Reservation.new
   end
 

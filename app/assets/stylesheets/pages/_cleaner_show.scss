@@ -11,9 +11,35 @@
 }
 
 .selected {
-  background-color : rgba(0,200,50,0.6);
+  background-color : $tribu-green;
 }
 
 .unavailable {
-  background-color: red;
+  background-color: rgba(200,0,0,0.3);
+}
+
+.buttons-div {
+  display:flex;
+}
+
+#reservation_reserved_on {
+  width:auto;
+}
+
+#cleaner-book-submit {
+  width:100%;
+  background-color: rgba(50,50,50,0.1);
+}
+
+.review-box {
+  // display:flex;
+  // align-items:center;
+  text-align:center;
+  border-bottom: 1px solid $tribu-green;
+  padding-bottom:10px;
+
+}
+
+.button-notification-star-review {
+  font-size:10px;
 }

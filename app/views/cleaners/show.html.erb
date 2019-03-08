@@ -2,27 +2,22 @@
 
   <!-- under is description and picture -->
   <div class="row cleaner-image">
+
     <span id="hidden-cleaner-picture"><%=@cleaner.photo_url %></span>
-    <div class="col-sm-2">
+    <div class="col-sm-6">
       <div class="text-center cleaner-info">
-        <%= @cleaner.name %>,
-        <%= @cleaner.age %> <br>
-        <%= @cleaner.price %> €   <br>
+        <div class="info-name"> <%= @cleaner.name %></div>
+        <div class="info-price"> <strong><%= @cleaner.price %></strong>€, </div>
+        <div class="info-age"> <%= @cleaner.age %> years old</div>
       </div>
     </div>
 
-    <div class="col-sm-6">
-      <div class=" text-center cleaner-description">
-        " <%= @cleaner.description %>"
-      </div>
-    </div>
 
     <% var = @cleaner.average_rating  %>
-    <div class="col-sm-2">
+    <div class="col-sm-6">
       <div class="text-center cleaner-rating">
         <div class="stars-outer">
-          <div class="stars-inner">
-          </div>
+          <div class="stars-inner"></div>
         </div>
         <br>
         <small>
@@ -32,45 +27,69 @@
     </div>
   </div>
 
+  <div>
+    <div class=" text-center cleaner-description">
+      " <%= @cleaner.description %>"
+    </div>
+  </div>
+
+
+
+
   <!-- book me action button -->
-  <div class="row  cleaner-show-all" style='background-color:brown;'>
-    <div class='text-center'>
-      <% if user_signed_in? %>
-      <%= simple_form_for @booking do |f|  %>
-      <%= f.hidden_field :cleaner_id, value: @cleaner.id %>
-      <%= f.hidden_field :user_id, value: current_user.id %>
-      <%= f.text_field :reserved_on, value:"01/01/2018" , class: "form-control input-group-text" %>
-      <div class="buttons-div">
-        <div id="before-noon" class="div-button">8 - 12 am</div>
-        <div id="after-noon" class="div-button">13 - 17 pm</div>
+  <div class="row">
+    <div class="cleaner-show-all">
+      <div class='text-center'>
+        <% if user_signed_in? %>
+        <%= simple_form_for @booking do |f|  %>
+        <%= f.hidden_field :cleaner_id, value: @cleaner.id %>
+        <%= f.hidden_field :user_id, value: current_user.id %>
+        <div class="date-booking">
+         <div class="buttons-div">
+          <%= f.text_field :reserved_on, value:"01/01/2018" , class: "form-control input-group-text text-centered" %>
+
+          <div id="before-noon" class="div-button">8 - 12 am</div>
+          <div id="after-noon" class="div-button">13 - 17 pm</div>
+        </div>
       </div>
+      <%= f.button :submit,'BOOK ME', class: "btn btn-lg", id:"cleaner-book-submit" %>
       <%= f.hidden_field :before_noon, value: false %>
       <%= f.hidden_field :after_noon, value: false %>
       <%= f.hidden_field :availabilities, value: @cleaner.availabilities.to_json %>
-      <%= f.button :submit,'BOOK ME', class: "btn btn-danger", id:"cleaner-book-submit" %>
+
       <% end %>
     </div>
     <% else %>
 
-  <div class='text-center'>
-    <div class="btn btn-primary">
-      <%= link_to 'sign in make a reservation', new_user_session_path %>
+    <div class='text-center'>
+      <div class="btn btn-primary">
+        <%= link_to 'sign in make a reservation', new_user_session_path %>
+      </div>
     </div>
+    <% end %>
   </div>
-  <% end %>
 </div>
 
 <!-- review section -->
 <div class="row">
-  <div class="text-center cleaner-show-all">
-    <%= @cleaner.name %>'s reviews :
-  </div>
+  <h2>What others thought of <%=@cleaner.name%></h2>
+
 </div>
 <div class="row cleaner-show-all ">
   <div class="d-flex flex-column">
     <% @reviews.each do |review| %>
-    <div class="d-flex justify-content-center cleaner-reviews">
-      "<%= review  %>"
+    <div class="review-box">
+      <div class="d-flex justify-content-center cleaner-reviews">
+        "<%= review.content %>"
+      </div>
+      <div class="button-notification-star-review">
+        <% test = review.rating %>
+        <i class="<%= test>0 ? 'fa fa-star checked' : 'fa fa-star' %>"></i>
+        <i class="<%= test>1 ? 'fa fa-star checked' : 'fa fa-star' %>"></i>
+        <i class="<%= test>2 ? 'fa fa-star checked' : 'fa fa-star' %>"></i>
+        <i class="<%= test>3 ? 'fa fa-star checked' : 'fa fa-star' %>"></i>
+        <i class="<%= test>4 ? 'fa fa-star checked' : 'fa fa-star' %>"></i>
+      </div>
     </div>
     <% end %>
   </div>
